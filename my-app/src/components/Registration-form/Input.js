@@ -9,7 +9,7 @@ function Input(props) {
       <div>
         <input className="width-100" type={type} name={name} {...rest} />
       </div>
-      <div className="label">
+      <div className="lb-reg">
         <label htmlFor={name}> {label}</label>
       </div>
       {error && <Error text={error}></Error>}

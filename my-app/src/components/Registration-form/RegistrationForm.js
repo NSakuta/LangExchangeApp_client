@@ -4,15 +4,20 @@ import Input from './Input';
 import Select from './Select';
 import RadioButtons from './RadioButtons';
 import Textarea from './Textarea';
-import { addNewUserAction } from '../../store/userReducer/userReducer';
+import { addNewUserAction, errorSelector } from '../../store/userReducer/userReducer';
 import { useDispatch } from 'react-redux';
 import './RegistrationForm.css';
+import { useSelector } from 'react-redux';
+import Error from './Error';
 
 
 
 const RegistrationForm = () => {
 
     const dispatch = useDispatch();
+    const errByAddUser = useSelector(errorSelector);
+
+    console.log(errByAddUser)
 
 
     const validateWithYup = (schema) => async (values) => {
@@ -87,8 +92,10 @@ const RegistrationForm = () => {
       const errors = use("errors", { errorWithTouched: true }); // Default is "false"
 
     return (
+        <div>
+        {errByAddUser ? <Error text={errByAddUser.error}></Error> : <div></div>}
         <div className="reg-wrapper">
-        <form ref={form}>
+        <form className="form-registration" ref={form}>
         <RadioButtons
             id="gender"
             label="Sex"
@@ -184,8 +191,9 @@ const RegistrationForm = () => {
             error={errors.description}
             className="two-columns"
           />
-          <input type="submit"/>
+          <input className="btn-submit" type="submit"/>
         </form>
+    </div>
     </div>
   )
 }
