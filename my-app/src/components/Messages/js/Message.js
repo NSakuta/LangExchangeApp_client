@@ -1,10 +1,12 @@
 import { useEffect } from 'react';
 import '../css/Message.css';
+import { NavLink, useParams } from 'react-router-dom';
 
 
 const Message = ({message, users}) => {
 
-    const {id, sentBy, recipient, title, text} = message;
+    const {id} = useParams();
+    const {sentBy, recipient, title, text} = message;
     //const allUsers = users;
 
     const findUserById = (array, id) => {
@@ -19,8 +21,10 @@ const Message = ({message, users}) => {
 
     return (
         <div className="box-message">
-            <h4>{sentByUser.firstName}</h4>
-            <p>{text}</p>
+            <NavLink key={sentByUser._id} to={`/${id}/me/messages/${sentByUser._id}`}>
+                <h4>{sentByUser.firstName}</h4>
+                <p>{text}</p>
+            </NavLink>
         </div>
     )
 }
