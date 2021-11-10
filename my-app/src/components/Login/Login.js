@@ -1,4 +1,6 @@
+import { NavLink } from 'react-router-dom';
 import './Login.css'
+
 
 const Login = () => {
 
@@ -33,7 +35,7 @@ const Login = () => {
                     <p className="styled-p">Don't have an account?</p>
                     </div>
                     <br/>
-                    <h5 className="styled-h5">Sign up now</h5>
+                    <NavLink to="/registration"><button className="btn-reg">Sign up now</button></NavLink>
                 </div>
             </form>
         </div>

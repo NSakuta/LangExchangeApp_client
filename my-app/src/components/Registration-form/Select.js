@@ -26,7 +26,7 @@ function Select(props) {
             })}
             </select>
         </div>
-        <div className="label">
+        <div className="lb-reg">
             <label htmlFor={name}>{label}</label>
         </div>
         {error && <Error text={error}></Error>}  
