@@ -4,7 +4,8 @@ import { addNewUser, getAllUsers, getUserByid, putNewValueToUser } from '../../a
 
 const initialState = {
     users: [],
-    currentUser: null
+    currentUser: null,
+    error: false
 };
 
 const userReducer = createSlice({
@@ -23,14 +24,18 @@ const userReducer = createSlice({
         },
         setCurrentUser: (state, {payload}) => {
             state.currentUser = payload.currentUser
+        },
+        setError: (state, {payload}) => {
+            state.error = payload.error
         }
     }
 })
 
 export default userReducer.reducer;
-export const {setUsers, addUser, updateUser, setCurrentUser} = userReducer.actions;
+export const {setUsers, addUser, updateUser, setCurrentUser, setError} = userReducer.actions;
 export const userSelector = state => state.user.users;
 export const currentUserSelector = state => state.user.currentUser;
+export const errorSelector = state => state.user.error;
 
 export const getAllUsersAction = () => {
     return async dispatch => {
@@ -39,6 +44,7 @@ export const getAllUsersAction = () => {
             const response = await getAllUsers();
             dispatch(setUsers({users: response}));
         }catch(err) {
+            dispatch(setError({error: err.message}))
             console.log(err.message);
         } finally {
             dispatch(stopLoading);

@@ -1,0 +1,87 @@
+.lb-login {
+    display: block;
+    text-align:left;
+    color: gray;
+    font-size: 12px;
+}
+.text-gray {
+    color: gray;
+}
+.box-login {
+    width: 420px;
+    margin: 0 auto;
+    margin-top: 90px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 9px;
+}
+.box-header {
+    background-color: rgb(87, 187, 128);
+    border-radius: 9px 9px 0 0;
+    height: 60px;
+    text-align: center;
+    color: white;
+}
+.btn-login {
+    width: 100%;
+    margin: 0 auto;
+    background-color: rgb(87, 187, 128);
+    color: white;
+    height: 35px;
+    border-radius: 9px;
+    border: none;
+    transition: background-color 1s;
+}
+.btn-login:hover {
+    background-color: rgb(68, 143, 99);
+    color: white;
+    cursor: pointer;
+}
+.box-body {
+    width: 80%;
+    margin: 0 auto;
+    margin-top: 30px;
+    position: relative;
+}
+.box-footer {
+    width: 90%;
+    margin: 0 auto;
+    text-align: center;
+}
+.box-btns {
+    width: 80%;
+    margin: 40px auto;
+}
+.styled-inp {
+    border-radius: 9px;
+    border: none;
+    height: 30px;
+    margin-top: 20px;
+    background-color: rgba(204, 203, 203, 0.404);
+}
+.styled-h6 {
+    color: rgb(87, 187, 128);
+    text-transform: uppercase;
+    font-weight:600;
+    margin: 0;
+    right: 0;
+    position: absolute;
+    right: 0;
+}
+.styled-h5 {
+    color: rgb(87, 187, 128);
+    text-transform: uppercase;
+    text-decoration: underline;
+    font-weight: 700;
+    padding-bottom: 40px;
+    margin: 0px 0px 0px 0px;
+
+}
+.styled-h4 {
+    margin: 0;
+    padding: 20px;
+}
+.styled-p {
+    color: gray;
+    margin: 0;
+}
+
