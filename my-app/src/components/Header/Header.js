@@ -6,14 +6,16 @@ export default function Header() {
         <div className="wrapper">
             <div className="header">
                 <a>
-                    <svg className="logo"></svg>
+                <svg height="22" width="22">
+                    <circle cx="10" cy="10" r="10" stroke="white" stroke-width="1" fill="white" />
+                </svg>
                 </a>
-                <ul>
-                    <li><NavLink className="nav-menu" to='/:id/profile'>Me</NavLink></li>
-                    <li><NavLink className="nav-menu" to='/users'>Find tandem</NavLink></li>
-                    <li><NavLink className="nav-menu" to='/blog'>Blog</NavLink></li>
+                <ul className="nav-top">
+                    <li><NavLink className="nav-top-li" to='/:id/me'>Me</NavLink></li>
+                    <li><NavLink className="nav-top-li" to='/users'>Find tandem</NavLink></li>
+                    <li><NavLink className="nav-top-li" to='/blog'>Blog</NavLink></li>
                 </ul>
-                <div className="text-end"><NavLink className="nav-menu" to='/login'>Login</NavLink></div>
+                <div className="text-end"><NavLink className="nav-top-li" to='/login'>Login</NavLink></div>
             </div>
         </div>
     )

@@ -36,6 +36,17 @@
     color: white;
     cursor: pointer;
 }
+.btn-reg {
+    cursor: pointer;
+    border: none;
+    color: rgb(87, 187, 128);
+    text-transform: uppercase;
+    text-decoration: underline;
+    font-weight: 700;
+    padding-bottom: 40px;
+    margin: 0px 0px 0px 0px;
+    background-color: white;
+}
 .box-body {
     width: 80%;
     margin: 0 auto;
@@ -67,15 +78,7 @@
     position: absolute;
     right: 0;
 }
-.styled-h5 {
-    color: rgb(87, 187, 128);
-    text-transform: uppercase;
-    text-decoration: underline;
-    font-weight: 700;
-    padding-bottom: 40px;
-    margin: 0px 0px 0px 0px;
 
-}
 .styled-h4 {
     margin: 0;
     padding: 20px;

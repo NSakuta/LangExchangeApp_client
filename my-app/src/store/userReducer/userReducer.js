@@ -80,14 +80,29 @@ export const updateUserAction = (id, newValue) => {
     }
 }
 
-export const getUserByIdAction = (id) => {
+// export const getUserByIdAction = (id) => {
+//     return async dispatch => {
+//         dispatch(startLoading());
+//         try {
+//             const response = await getUserByid(id);
+//             dispatch(setCurrentUser({currentUser: response}))
+//         } catch(err) {
+//             console.log(err.message)
+//         }
+//     }
+// }
+
+export const setCurrentUserAction = () => {
     return async dispatch => {
         dispatch(startLoading());
         try {
-            const response = await getUserByid(id);
-            dispatch(setCurrentUser({currentUser: response}))
-        } catch(err) {
+            const userId = JSON.parse(localStorage.getItem('USER_ID'));
+            console.log('uuuusers', userId);
+            dispatch(setCurrentUser({currentUser: userId}));
+        }catch(err) {
             console.log(err.message)
+        } finally {
+            dispatch(stopLoading())
         }
     }
 }

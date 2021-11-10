@@ -1,0 +1,21 @@
+#menu-left {
+    position: absolute;
+    left: 0;
+    width: 20%;
+    height: 100vh;
+    background-color: rgba(175, 121, 121, 0.205);
+}
+.nav-left {
+    list-style: none;
+    padding: 0;
+}
+.nav-left-li {
+    margin: 0;
+    color: rgb(68, 67, 67);
+    padding: 8% 25%;
+}
+.nav-left-li:hover {
+    color: yellow;
+    cursor: pointer;
+    background-color: gray;
+}
