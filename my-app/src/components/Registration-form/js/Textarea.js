@@ -1,4 +1,4 @@
-import './RegistrationForm.css'
+import '../css/RegistrationForm.css'
 
 function Textarea(props) {
   const { label, id, error, className, ...rest } = props

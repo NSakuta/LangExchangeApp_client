@@ -1,4 +1,4 @@
-import './RegistrationForm.css'
+import '../css/RegistrationForm.css'
 
 // function RadioButtons(props) {
 //   const { label, name, options, ...rest } = props

@@ -1,0 +1,16 @@
+.wrapper-allUsers {
+    margin: 20px auto;
+    width: 80%;
+    _display: flex;
+    _flex-wrap: wrap;
+    margin: 0;
+    _justify-content: space-evenly;
+    margin-left: 20%;
+}
+
+.allUsers {
+    width: 60%;
+    height: fit-content;
+    padding: 20px;
+}
+

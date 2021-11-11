@@ -8,3 +8,13 @@ export const getAllMessages = async () => {
         console.log(err.message)
     }
 };
+
+export const addNewMessage = async (newMessage) => {
+    try {
+        const response = await client.post('/messages', newMessage);
+        console.log(response.data);
+        return response.data;
+    } catch(err) {
+        console.log(err.message)
+    }
+};

@@ -4,9 +4,9 @@ import Input from './Input';
 import Select from './Select';
 import RadioButtons from './RadioButtons';
 import Textarea from './Textarea';
-import { addNewUserAction, errorSelector } from '../../store/userReducer/userReducer';
+import { addNewUserAction, errorSelector } from '../../../store/userReducer/userReducer';
 import { useDispatch } from 'react-redux';
-import './RegistrationForm.css';
+import '../css/RegistrationForm.css';
 import { useSelector } from 'react-redux';
 import Error from './Error';
 
