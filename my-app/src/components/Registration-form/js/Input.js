@@ -1,5 +1,5 @@
 import Error from "./Error";
-import './RegistrationForm.css'
+import '../css/RegistrationForm.css'
 
 
 function Input(props) {

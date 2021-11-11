@@ -1,5 +1,5 @@
 import Error from "./Error"
-import './RegistrationForm.css'
+import '../css/RegistrationForm.css'
 
 function Select(props) {
   const { label, name, options, error, ...rest } = props

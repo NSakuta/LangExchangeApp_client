@@ -1,0 +1,19 @@
+.wrapper-msg {
+    width: 80%;
+    display: flex;
+    margin: 0;
+    justify-content: space-evenly;
+    margin-left: 20%;
+}
+.wrapper-msg-left{
+    width: 70%;
+    height: 100vh;
+}
+
+.wrapper-msg-right{
+    background-color: burlywood;
+    width: 30%;
+    height: 100vh;
+}
+
+

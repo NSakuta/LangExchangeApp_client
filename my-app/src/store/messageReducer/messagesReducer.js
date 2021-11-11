@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getAllMessages } from "../../api/message.api";
+import { addNewMessage, getAllMessages } from "../../api/message.api";
 import { startLoading, stopLoading } from "../appreducer/appReducer";
 
 
@@ -15,17 +15,17 @@ const messagesReducer = createSlice({
     reducers: {
         setMessages: (state, {payload}) => {
             state.messages = payload.messages
+        },
+        addMessage: (state, {payload}) => {
+            state.messages.push(payload)
         }
-    //     setReceivedMessages: (state, {payload}) => {
-    //         state.receivedMessages = payload.receivedMessages
-    //     }
+    
         }
 })
 
 export default messagesReducer.reducer;
-export const {setMessages} = messagesReducer.actions;
+export const {setMessages, addMessage} = messagesReducer.actions;
 export const messagesSelector = state => state.messages.messages;
-export const receivedMessagesSelector = state => state.messages.receivedMessages;
 
 
 export const getAllMessagesAction = () => { 
@@ -33,7 +33,6 @@ export const getAllMessagesAction = () => {
         dispatch(startLoading());
         try {
             const response = await getAllMessages();
-            console.log('response: ', response)
             dispatch(setMessages({messages: response}))
         } catch(err) {
             console.log(err.message)
@@ -42,17 +41,20 @@ export const getAllMessagesAction = () => {
         }
     }
 };
-
-// export const getAllReceivedMessagesByUserIdAction = (array) => {
-//     const userId = getUserIdFromLocalStorage();
-//     const receivedMessages = [];
-//     if(userId) {
-//         receivedMessages = array.filter(el => el.recipient === userId);
-//         dispatch(setReceivedMessages({receivedMessages: receivedMessages}))
-//     } else {
-//         return []
-//     }
-// }
+ 
+export const addNewMessageAction = (newMessage) => {
+    return async dispatch => {
+        dispatch(startLoading());
+        try {
+            const response = await addNewMessage(newMessage);
+            dispatch(addMessage({...response}));
+        } catch(err) {
+            console.log(err.message)
+        } finally {
+            dispatch(stopLoading());
+        }
+    }
+}
 
 // const getUserIdFromLocalStorage = () => {
 //     return JSON.parse(localStorage.getItem('USER_ID')) || []

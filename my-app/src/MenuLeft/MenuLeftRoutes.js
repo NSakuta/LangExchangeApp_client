@@ -1,9 +1,8 @@
 import { Route, Routes } from 'react-router-dom';
 import UserProfile from '../components/UserProfile/UserProfile';
 import MenuLeft from './MenuLeft';
-import MessagesFromOneUser from '../components/Messages/js/MessagesFromOneUser'
-import MessagesFromAllUsers from '../components/Messages/js/MessagesFromAllUsers'
-import MessagesMain from '../components/Messages/js/MessagesMain';
+import MessagesBetweenTwoUsers from '../components/Messages/js/MessagesBetweenTwoUsers'
+import MessagesBetweenAllUsers from '../components/Messages/js/MessagesBetweenAllUsers'
 
 const MenuLeftRoutes = () => {
     return (
@@ -11,8 +10,8 @@ const MenuLeftRoutes = () => {
             <MenuLeft></MenuLeft>
             <Routes>
                 <Route path='profile' element={<UserProfile></UserProfile>}></Route>
-                <Route path='messages/*' element={<MessagesFromAllUsers></MessagesFromAllUsers>}></Route>
-                <Route path='messages/:id/*' element={<MessagesFromOneUser></MessagesFromOneUser>}></Route>
+                <Route path='messages/*' element={<MessagesBetweenAllUsers></MessagesBetweenAllUsers>}></Route>
+                <Route path='messages/:id/*' element={<MessagesBetweenTwoUsers></MessagesBetweenTwoUsers>}></Route>
             </Routes>
         </div>
     )
