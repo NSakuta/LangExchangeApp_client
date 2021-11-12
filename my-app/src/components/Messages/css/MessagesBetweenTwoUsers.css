@@ -8,12 +8,70 @@
 .wrapper-msg-left{
     width: 70%;
     height: 100vh;
+    position: relative;
+    display: flex;
+    flex-direction: column;
 }
 
 .wrapper-msg-right{
-    background-color: burlywood;
+    background-color: rgba(231, 231, 231, 0.699);
     width: 30%;
     height: 100vh;
 }
+.left {
+    width: fit-content;
+    min-width: 50%;
+    height: fit-content;
+    background-color: rgba(210, 245, 245, 0.753);
+    border-radius: 15px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding: 10px;
+    float: left;
+    display: block;
+}
+
+.right {
+    width: fit-content;
+    min-width: 50%;
+    height: fit-content;
+    background-color: rgba(184, 240, 176, 0.5);
+    float: right;    
+    border-radius: 15px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding: 10px;
+    display: block;
+    position: relative;
+    padding-right: 30px;
+
+}
+#sign {
+    position: absolute;
+    right: 5px;
+    bottom: 20%;
+    color: rgb(179, 177, 177);
+    font-size: 11px;
+    padding: 3px;
+    background-color: white;
+    border-radius: 30px;
+}
+#box-top-msgs {
+    height: 70%;
+    width: 100%;
+    _overflow: scroll;
+}
+#box-bottom-input {
+    height: 30%;
+    width: 100%;
+}
+#inp-msg {
+    width: 90%;
+    height: 70%;
+    margin: 0 auto;
+    border-radius: 9px;
+    border: 0.5px solid rgb(172, 167, 167);
+}
+
 
 

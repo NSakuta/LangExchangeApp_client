@@ -14,7 +14,7 @@ const Users = () => {
     }, [dispatch])
 
     const currentUser = useSelector(currentUserSelector);
-    const recipient = "6187fdb7d3cbb1424b171960" // default
+    const recipient = "618e2a5cb9fd94cb9918a7ca" // default
 
     const { form } = useForm({
         defaultValues: { text: ''},

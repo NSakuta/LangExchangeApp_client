@@ -13,7 +13,7 @@ import { NavLink } from 'react-router-dom';
 
 const MessagesPage = () => {
 
-    const {findReceivedMessagesByUserId, findSentMessagesByUserId} = useContext(AppContext);
+    const {findReceivedMessagesByUserId, findSentMessagesByUserId, findUserById} = useContext(AppContext);
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -35,21 +35,50 @@ const MessagesPage = () => {
 
     let receivedMessages = findReceivedMessagesByUserId(currentUserId, messages);
     let sentMessages = findSentMessagesByUserId(currentUserId, messages);
+
+
+    const uniqueReceivedMessages = receivedMessages.filter(
+        (el, index, array) => array.findIndex(
+            item => (item.sentBy === el.sentBy)
+        ) === index
+    );
+
+    let uniqueSentMessages = sentMessages.filter((el, index, array) => array.findIndex(item => (item.recipient === el.recipient)) === index);  
     
-    receivedMessages.push(...sentMessages)
+    uniqueReceivedMessages.push(...uniqueSentMessages);
 
-    let messagesByUniqueUsers = receivedMessages.filter((el, index, array) => array.findIndex(item => (item.sentBy === el.sentBy)) === index);
+   const usersId = uniqueReceivedMessages.map(el => { 
+        if(el.sentBy === currentUserId) {
+            return el.recipient
+        } else {
+            return el.sentBy
+        }
+    });
 
+
+      const uniqueUsersId = usersId.filter((x, i, a) => a.indexOf(x) === i)
+
+      function findUsersById() {
+        const newArray = [];
+        for(let i = 0; i < uniqueUsersId.length; i++) {
+            const a = findUserById(users, uniqueUsersId[i])            
+            newArray.push(a)
+        }
+        return newArray;
+      }
+
+      const uniqueUsers = findUsersById();
+
+      
 
     // console.log('currentUserId', currentUserId)
     // console.log('messages', messages)
-    // console.log('received', receivedMessages)
-    // console.log('newArray: ', messagesByUniqueUsers)
-    // console.log('rec.mes. before ', receivedMessages)
-    // console.log('sent.mes.', sentMessages)
+    //console.log('received', receivedMessages)    
     // console.log('rec.mes. after', receivedMessages)
     // const params = useParams();
     // console.log('params: ', params)
+    // console.log('IMP: ', IMP)
+    //console.log('messagesByUniqueUsers2: ', messagesByUniqueUsers2)
 
 
     return (
@@ -58,15 +87,17 @@ const MessagesPage = () => {
                 <div className="allUsers">
                     {messages.length === 0 ? <div></div> : users.length === 0 ? <div></div> : 
                     <div>
-                        {messagesByUniqueUsers.map(el => {
-                            return (
-                                <NavLink key={el._id} to={`/${currentUserId}/me/messages/${el.sentBy}`}>
-                                <Message key={el._id}
-                                    message={el}
+                        {uniqueUsers.map(el => {
+                                return (
+                                    <NavLink key={el._id} to={`/${currentUserId}/me/messages/${el._id}`}>
+                                    <Message key={el._id}
+                                    user={el}
                                     users={users}
+                                    messages={messages}
+                                    currentUserId={currentUserId}
                                 ></Message>
                                 </NavLink>
-                            )
+                                )
                         })}
                     </div>}
                 </div>
