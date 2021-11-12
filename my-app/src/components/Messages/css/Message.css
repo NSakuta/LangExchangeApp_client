@@ -3,7 +3,7 @@
     height: 80px;
     margin: 5px 0;
     position: relative;
-    box-shadow: 0 4px 8px 0 rgba(182, 181, 181, 0.2), 0 6px 20px 0 rgba(180, 179, 179, 0.19);
+    box-shadow: 0 4px 8px 0 rgba(146, 141, 141, 0.2), 0 6px 20px 0 rgba(180, 179, 179, 0.19);
     border-radius: 10px;
 }
 .box-message:hover {

@@ -24,8 +24,7 @@
     height: fit-content;
     background-color: rgba(210, 245, 245, 0.753);
     border-radius: 15px;
-    margin-top: 5px;
-    margin-bottom: 5px;
+    margin: 5px 5px;
     padding: 10px;
     float: left;
     display: block;
@@ -38,8 +37,7 @@
     background-color: rgba(184, 240, 176, 0.5);
     float: right;    
     border-radius: 15px;
-    margin-top: 5px;
-    margin-bottom: 5px;
+    margin: 5px 5px;
     padding: 10px;
     display: block;
     position: relative;
@@ -49,7 +47,7 @@
 #sign {
     position: absolute;
     right: 5px;
-    bottom: 20%;
+    bottom: 5px;
     color: rgb(179, 177, 177);
     font-size: 11px;
     padding: 3px;
@@ -59,7 +57,8 @@
 #box-top-msgs {
     height: 70%;
     width: 100%;
-    _overflow: scroll;
+    overflow: auto;
+    overflow-y: scroll;
 }
 #box-bottom-input {
     height: 30%;
@@ -72,6 +71,17 @@
     border-radius: 9px;
     border: 0.5px solid rgb(172, 167, 167);
 }
+#box-avatar {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    box-shadow: 0 4px 8px 0 rgba(146, 141, 141, 0.2), 0 6px 20px 0 rgba(180, 179, 179, 0.19);
+}
+.x-center {
+    margin: 0 auto;
+    width: 80%;
+    margin-top: 20%;
+  }
 
 
 
