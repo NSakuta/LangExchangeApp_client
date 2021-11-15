@@ -3,7 +3,8 @@ import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { messagesSelector} from '../../../store/messageReducer/messagesReducer';
 import { useContext, useEffect } from 'react';
-import { currentUserSelector, setCurrentUserAction, userSelector } from '../../../store/userReducer/userReducer';
+import { userSelector } from '../../../store/userReducer/userReducer';
+import { currentUserSelector, setCurrentUserAction } from '../../../store/authReducer/authReducer'
 import { getAllUsersAction } from '../../../store/userReducer/userReducer';
 import { useForm } from 'react-cool-form';
 import { addNewMessageAction } from '../../../store/messageReducer/messagesReducer';
@@ -13,9 +14,9 @@ const MessagesFromOneUser = () => {
 
     const dispatch = useDispatch();
 
-    useEffect(() => {
-        dispatch(setCurrentUserAction())
-    }, [dispatch])
+    // useEffect(() => {
+    //     dispatch(setCurrentUserAction())
+    // }, [dispatch])
 
     useEffect(() => {
         dispatch(getAllUsersAction())
@@ -23,8 +24,10 @@ const MessagesFromOneUser = () => {
 
     const {findUserById} = useContext(AppContext);
     const messages = useSelector(messagesSelector);
-    const currentUserId = useSelector(currentUserSelector);
+    // const currentUserId = useSelector(currentUserSelector);
 
+    const currentUserId = JSON.parse(localStorage.getItem('USER_ID'));
+    
     const { id } = useParams(); 
 
     const users = useSelector(userSelector);

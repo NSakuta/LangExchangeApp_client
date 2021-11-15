@@ -27,7 +27,7 @@ export const getUserByid = async (id) => {
     }
 };
 
-export const putNewValueToUser = async (id, newValue) => {
+export const updateUser = async (id, newValue) => {
     try {
         const response = await client.put(`/users/${id}`, newValue);
         return response.data;

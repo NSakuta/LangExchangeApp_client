@@ -1,13 +1,15 @@
 import { NavLink } from 'react-router-dom';
 import './Login.css'
-import { loginAction } from '../../store/userReducer/userReducer';
-import { set, useForm } from 'react-cool-form';
-import { useDispatch } from 'react-redux';
+import { loginAction } from '../../store/authReducer/authReducer';
+import { useForm } from 'react-cool-form';
+import { useDispatch, useSelector } from 'react-redux';
+import { authSelector } from '../../store/appreducer/appReducer';
 
 const Login = () => {
 
     const dispatch = useDispatch();
-
+    const auth = useSelector(authSelector);
+    
     const initialValues = {
         email: '',
         password: ''
@@ -17,14 +19,16 @@ const Login = () => {
         defaultValues: initialValues,
         onSubmit: (values, {reset}) =>{
             console.log("onSubmit: ", values)
-            //dispatch(loginAction(values));
+            dispatch(loginAction(values));
             reset()
         }
-      });
+    });
+
+    console.log('auth: ', auth)
 
     return (
         <div className="box-login">
-            <form rex={form} noValidate>
+            <form ref={form} noValidate>
                 <div className="box-header">
                     <h4 className="styled-h4">Login</h4>
                 </div>
@@ -33,14 +37,13 @@ const Login = () => {
                         <input className="width-100 styled-inp" name="email" type="email" id="email" placeholder="e.g. example@test.com"></input>
                     </div>
                     <div>
-                        <label className="lb-login text-gray" htmlFor="email">Your E-mail</label>
+                        <label className="label text-gray" htmlFor="email">Your E-mail</label>
                     </div>
-                    
                     <div>
                         <input className="width-100 styled-inp" name="password" type="password" placeholder="type your password"></input>
                     </div>
                     <div>
-                        <label className="lb-login text-gray" htmlFor="password">Your password</label>
+                        <label className="label text-gray" htmlFor="password">Your password</label>
                     </div>
                     <h6 className="styled-h6">Forgot Username or password?</h6>
                 </div>
@@ -49,7 +52,7 @@ const Login = () => {
                 </div>
                 <div className="box-footer">
                     <div>
-                    <p className="styled-p">Don't have an account?</p>
+                        <p className="styled-p">Don't have an account?</p>
                     </div>
                     <br/>
                     <NavLink to="/signup"><button className="btn-reg">Sign up now</button></NavLink>

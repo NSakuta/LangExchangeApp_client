@@ -1,12 +1,12 @@
 import './css/MenuLeft.css';
 import { NavLink } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-import { currentUserSelector } from '../store/userReducer/userReducer';
-
+import { AppContext } from '../App';
+import { useContext } from 'react';
 
 const MenuLeft = () => {
 
-    const currentUserId = useSelector(currentUserSelector);
+    const {getCurrentUserIdFromLocalStorage} = useContext(AppContext);
+    const currentUserId = getCurrentUserIdFromLocalStorage();
 
     return (
          <div id="menu-left">
