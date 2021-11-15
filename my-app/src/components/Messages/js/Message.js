@@ -1,24 +1,39 @@
 import '../css/Message.css';
+import { useEffect } from 'react';
+import { getAllMessagesAction } from '../../../store/messageReducer/messagesReducer';
+import { useDispatch } from 'react-redux';
 
-const Message = ({message, users}) => {
+const Message = ({user, messages, currentUserId}) => {
 
-    const {sentBy, text} = message;
+    const dispatch = useDispatch();
 
-    const sentByUser = findUserById(users, sentBy);
+    useEffect(() => {
+        dispatch(getAllMessagesAction())
+    }, [dispatch])
+
+    let messagesBetweenTwoUsers = messages.filter(
+        el => (el.sentBy === user._id && el.recipient === currentUserId)
+            || (el.sentBy === currentUserId && el.recipient === user._id)
+    );
+
+    const lastMessage = messagesBetweenTwoUsers[messagesBetweenTwoUsers.length - 1];
+
+    //console.log('messagesBetweenTwoUsers: ', lastMessage)
+    // console.log('sentby', sentBy)
+    // console.log('received by: ', receivedByUser)
+    // console.log('sent by user: ', sentByUser)
+
 
     return (
         <div className="box-message">
-            <div className="" style={{"backgroundImage": `${sentByUser.img}`}}>
-                <img className="avatar" src={sentByUser.img} alt="img"></img>
+            <div className="" style={{"backgroundImage": `${user.img}`}}>
+                <img className="avatar" src={user.img} alt="img"></img>
             </div>
-            <h3 className="msg-sentBy">{sentByUser.firstName}, {sentByUser.lastName}</h3>
-            <p>{text}</p>
+            <h3 className="msg-sentBy">{user.firstName}, {user.lastName}</h3> 
+            {lastMessage ? <p id="msg-text">{lastMessage.text}</p> : <div></div>}
         </div>
     )
 }
 
 export default Message;
 
-const findUserById = (array, id) => {
-    return array.find(el => el._id === id)
-}

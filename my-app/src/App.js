@@ -38,11 +38,16 @@ const findSentMessagesByUserId = (id, array) => {
   return sentMessages;
 }
 
+const findUserById = (array, id) => {
+  return array.find(el => el._id === id)
+}
+
   return (
     <div>
       <AppContext.Provider value = {{
         findReceivedMessagesByUserId,
-        findSentMessagesByUserId
+        findSentMessagesByUserId,
+        findUserById
       }}>
       <Header/>
       <Routes>

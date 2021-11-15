@@ -17,9 +17,6 @@ const RegistrationForm = () => {
     const dispatch = useDispatch();
     const errByAddUser = useSelector(errorSelector);
 
-    console.log(errByAddUser)
-
-
     const validateWithYup = (schema) => async (values) => {
         let errors = {};   
         try {
