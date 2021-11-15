@@ -1,6 +1,7 @@
 import {createSlice} from '@reduxjs/toolkit';
 import { startLoading, stopLoading } from '../appreducer/appReducer';
 import { addNewUser, getAllUsers, getUserByid, putNewValueToUser } from '../../api/user.api';
+import { login } from '../../api/auth.api';
 
 const initialState = {
     users: [],
@@ -36,6 +37,20 @@ export const {setUsers, addUser, updateUser, setCurrentUser, setError} = userRed
 export const userSelector = state => state.user.users;
 export const currentUserSelector = state => state.user.currentUser;
 export const errorSelector = state => state.user.error;
+
+export const loginAction = (data) => {
+    return async dispatch => {
+        dispatch(startLoading());
+        try {
+            const response = await login(data);
+            dispatch(setCurrentUser({currentUser: response._id}))
+        } catch (err) {
+            console.log(err.message)
+        } finally {
+            dispatch(stopLoading());
+        }
+    }
+}
 
 export const getAllUsersAction = () => {
     return async dispatch => {
@@ -79,18 +94,6 @@ export const updateUserAction = (id, newValue) => {
         }
     }
 }
-
-// export const getUserByIdAction = (id) => {
-//     return async dispatch => {
-//         dispatch(startLoading());
-//         try {
-//             const response = await getUserByid(id);
-//             dispatch(setCurrentUser({currentUser: response}))
-//         } catch(err) {
-//             console.log(err.message)
-//         }
-//     }
-// }
 
 export const setCurrentUserAction = () => {
     return async dispatch => {

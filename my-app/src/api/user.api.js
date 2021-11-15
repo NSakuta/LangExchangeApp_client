@@ -11,7 +11,7 @@ export const getAllUsers = async () => {
 
 export const addNewUser = async (newUser) => {
     try {
-        const response = await client.post('/users', newUser);
+        const response = await client.post('/auth/signup', newUser);
         return response.data;
     } catch(err) {
         console.log(err.message);

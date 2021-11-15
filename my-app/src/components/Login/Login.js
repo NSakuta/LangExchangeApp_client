@@ -1,13 +1,30 @@
 import { NavLink } from 'react-router-dom';
 import './Login.css'
-
+import { loginAction } from '../../store/userReducer/userReducer';
+import { set, useForm } from 'react-cool-form';
+import { useDispatch } from 'react-redux';
 
 const Login = () => {
 
+    const dispatch = useDispatch();
+
+    const initialValues = {
+        email: '',
+        password: ''
+    }
+
+    const {form} = useForm({
+        defaultValues: initialValues,
+        onSubmit: (values, {reset}) =>{
+            console.log("onSubmit: ", values)
+            //dispatch(loginAction(values));
+            reset()
+        }
+      });
 
     return (
         <div className="box-login">
-            <form>
+            <form rex={form} noValidate>
                 <div className="box-header">
                     <h4 className="styled-h4">Login</h4>
                 </div>
@@ -35,7 +52,7 @@ const Login = () => {
                     <p className="styled-p">Don't have an account?</p>
                     </div>
                     <br/>
-                    <NavLink to="/registration"><button className="btn-reg">Sign up now</button></NavLink>
+                    <NavLink to="/signup"><button className="btn-reg">Sign up now</button></NavLink>
                 </div>
             </form>
         </div>

@@ -54,7 +54,7 @@ const findUserById = (array, id) => {
         <Route path='/' element={<Home></Home>}></Route>
         <Route path='login' element={<Login/>} />
         <Route path='users/*' element={<Users/>} ></Route>
-        <Route path='registration' element={<RegistrationForm/>} ></Route>
+        <Route path='signup' element={<RegistrationForm/>} ></Route>
         <Route path=':id/*' element={<OwnUserHomePage/>} ></Route>
         {/* <Route path=':id/me/*' element={<UserProfile/>}></Route> */}
         <Route path='blog' element={<Blog/>} ></Route>
