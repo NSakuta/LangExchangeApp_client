@@ -3,7 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { useContext, useEffect } from "react";
 import { messagesSelector } from "../../../store/messageReducer/messagesReducer";
 import { getAllMessagesAction } from '../../../store/messageReducer/messagesReducer';
-import { userSelector, currentUserSelector, setCurrentUserAction } from "../../../store/userReducer/userReducer";
+import { userSelector } from "../../../store/userReducer/userReducer";
+import { currentUserSelector, setCurrentUserAction } from '../../../store/authReducer/authReducer'
 import { getAllUsersAction } from "../../../store/userReducer/userReducer";
 import Message from './Message';
 import { AppContext } from '../../../App';
@@ -13,7 +14,7 @@ import { NavLink } from 'react-router-dom';
 
 const MessagesPage = () => {
 
-    const {findReceivedMessagesByUserId, findSentMessagesByUserId, findUserById} = useContext(AppContext);
+    const {findReceivedMessagesByUserId, findSentMessagesByUserId, findUserById, getCurrentUserIdFromLocalStorage} = useContext(AppContext);
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -24,14 +25,17 @@ const MessagesPage = () => {
         dispatch(getAllUsersAction())
     }, [dispatch])
 
-    useEffect(() => {
-        dispatch(setCurrentUserAction())
-    }, [dispatch])
+    // useEffect(() => {
+    //     dispatch(setCurrentUserAction())
+    // }, [dispatch])
 
 
     const messages = useSelector(messagesSelector);
-    const currentUserId = useSelector(currentUserSelector);
+    // const currentUserId = useSelector(currentUserSelector);
+    const currentUserId = getCurrentUserIdFromLocalStorage();
     const users = useSelector(userSelector);
+
+    console.log('currentUserId: ', currentUserId)
 
     let receivedMessages = findReceivedMessagesByUserId(currentUserId, messages);
     let sentMessages = findSentMessagesByUserId(currentUserId, messages);
