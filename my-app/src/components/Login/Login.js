@@ -1,15 +1,17 @@
 import { NavLink } from 'react-router-dom';
 import './Login.css'
-import { loginAction } from '../../store/authReducer/authReducer';
+import { getCurrentUserIdFromLocalStorage, loginAction } from '../../store/authReducer/authReducer';
 import { useForm } from 'react-cool-form';
 import { useDispatch, useSelector } from 'react-redux';
 import { authSelector } from '../../store/appreducer/appReducer';
+import { Navigate } from 'react-router-dom';
 
 const Login = () => {
 
     const dispatch = useDispatch();
     const auth = useSelector(authSelector);
-    
+    const currentUserId = getCurrentUserIdFromLocalStorage();
+
     const initialValues = {
         email: '',
         password: ''
@@ -18,7 +20,6 @@ const Login = () => {
     const {form} = useForm({
         defaultValues: initialValues,
         onSubmit: (values, {reset}) =>{
-            console.log("onSubmit: ", values)
             dispatch(loginAction(values));
             reset()
         }
@@ -28,6 +29,8 @@ const Login = () => {
 
     return (
         <div className="box-login">
+            {auth && <Navigate to={`/user/${currentUserId}/me`}></Navigate>}
+
             <form ref={form} noValidate>
                 <div className="box-header">
                     <h4 className="styled-h4">Login</h4>
@@ -55,7 +58,7 @@ const Login = () => {
                         <p className="styled-p">Don't have an account?</p>
                     </div>
                     <br/>
-                    <NavLink to="/signup"><button className="btn-reg">Sign up now</button></NavLink>
+                    <NavLink to="/auth/signup"><button className="btn-reg">Sign up now</button></NavLink>
                 </div>
             </form>
         </div>

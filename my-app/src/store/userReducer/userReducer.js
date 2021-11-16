@@ -76,4 +76,8 @@ export const updateUserAction = (id, newValue) => {
     }
 }
 
+export const findUserById = (array, id) => {
+    return array.find(el => el._id === id)
+  }
+
 

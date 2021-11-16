@@ -1,7 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit"
-import { startLoading, stopLoading } from "../appreducer/appReducer";
+import { authSuccess, signin, startLoading, stopLoading } from "../appreducer/appReducer";
 import { login } from "../../api/auth.api";
-import { authSuccess } from "../appreducer/appReducer";
 
 const initialState = {
     error: null,
@@ -41,6 +40,7 @@ export const loginAction = (data) => {
             const response = await login(data);
             console.log('login action: ', response)
             localStorage.setItem('USER_ID', JSON.stringify(response.id))
+            dispatch(setCurrentUser({currentUser: response.id}))
             dispatch(authSuccess());
         } catch (err) {
             dispatch(setError({error: err.message}))
@@ -50,16 +50,6 @@ export const loginAction = (data) => {
     }
 }
 
-// export const getCurrentUserAction = () => {
-//     return async dispatch => {
-//         dispatch(startLoading());
-//         try {
-//             const userId = JSON.parse(localStorage.getItem('USER_ID'));
-//             dispatch(setCurrentUser({currentUser: userId}));
-//         }catch(err) {
-//             console.log(err.message)
-//         } finally {
-//             dispatch(stopLoading())
-//         }
-//     }
-// }
+export const getCurrentUserIdFromLocalStorage = () => {
+    return JSON.parse(localStorage.getItem('USER_ID')) || null;
+}

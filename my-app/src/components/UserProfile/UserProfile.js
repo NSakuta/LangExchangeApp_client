@@ -1,24 +1,29 @@
-import { useSelector } from 'react-redux';
-import { NavLink } from 'react-router-dom';
-import { currentUserSelector } from '../../store/authReducer/authReducer';
 import './UserProfile.css'
-import { AppContext } from '../../App';
-import { useContext } from 'react';
+import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { getAllUsersAction } from '../../store/userReducer/userReducer';
+import { userSelector } from '../../store/userReducer/userReducer';
+import { useEffect } from 'react';
+import { currentUserSelector } from '../../store/authReducer/authReducer';
+
 
 const Profile = () => {
-    //const id = useSelector(currentUserSelector);
-    const {getCurrentUserIdFromLocalStorage} = useContext(AppContext);
-    const currentUserId = getCurrentUserIdFromLocalStorage();
+
+    const currentUserId = useSelector(currentUserSelector);
+    const dispatch = useDispatch();
+
+    console.log(currentUserId);
+
+    useEffect(() => {
+        dispatch(getAllUsersAction())
+    }, [dispatch])
+
+    const users = useSelector(userSelector)
+    console.log('users: ', users)
 
     return (
         <div>
-            <div id="menu-left">
-                <ul className="nav-left">
-                    <li className="nav-left-li">Profile</li>
-                    <li className="nav-left-li"><NavLink to={`/${currentUserId}/me/messages`}>Messages</NavLink></li>
-                    <li className="nav-left-li">Favourites</li>
-                </ul>
-            </div>
+            <p>User Profile</p>
         </div>
     )
 }
