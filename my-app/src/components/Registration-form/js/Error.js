@@ -2,7 +2,7 @@ import '../css/Error.css';
 
 const Error = ({text}) => {
     return (
-        <div className="box">
+        <div id="box-error">
             <p id="text-error">{text}</p>
         </div>
     );

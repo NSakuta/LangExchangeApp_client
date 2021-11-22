@@ -1,6 +1,6 @@
 import '../css/UsersList.css'
 import { useDispatch, useSelector } from "react-redux";
-import { currentUserSelector } from "../../../store/authReducer/authReducer";
+import { currentUserSelector, getCurrentUserIdFromLocalStorage } from "../../../store/authReducer/authReducer";
 import { useEffect } from "react";
 import { getAllUsersAction, userSelector } from "../../../store/userReducer/userReducer";
 import User from "./User";
@@ -8,7 +8,7 @@ import { NavLink } from 'react-router-dom';
 
 const Users = () => {
     
-    const currentUserId = useSelector(currentUserSelector);
+    const currentUserId = getCurrentUserIdFromLocalStorage();
     const dispatch = useDispatch();
 
     console.log(currentUserId);

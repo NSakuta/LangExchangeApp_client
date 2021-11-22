@@ -38,3 +38,10 @@ export const logoutAction = () => {
         dispatch(logout({isAuth: false}))
     }
 }
+
+// export const isAuthTrue = () => {
+//     return dispatch => {
+//         const value = localStorage.getItem('TOKEN') !== null;
+//         dispatch(authSuccess, ({isAuth: value}))
+//     }
+// }

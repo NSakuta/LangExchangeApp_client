@@ -1,6 +1,11 @@
 .App {
   text-align: center;
 }
+.wrapper {
+  width: 100%;
+  height: fit-content;
+}
+
 .col-3 {
   height: 100vh;
   background-color: rgba(223, 223, 223, 0.205);
@@ -37,5 +42,10 @@
   width: calc(100% / 2);
   margin: 0;
 }
+.is-active:active {
+  background-color: rgba(151, 151, 151, 0.295);
+}
+
+
 
 

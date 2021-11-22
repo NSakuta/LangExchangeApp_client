@@ -1,11 +1,36 @@
 #menu-left {
     position: absolute;
     left: 0;
-    width: 20%;
+    width: 15%;
     height: 100vh;
-    background-color: rgba(231, 231, 231, 0.418);
+    background-color: rgba(151, 151, 151, 0.068);
 }
 .no-decoration{
     text-decoration: none;
 }
-
+.nav-left {
+    list-style: none;
+    padding: 0;
+}
+.nav-left-li {
+    margin: 10px;
+    color: rgb(117, 117, 117);
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 18px;
+    transition: 0.5s background-color;
+    width: 100px;
+}
+.nav-left-li:hover {
+    cursor: pointer;
+    background-color: rgba(151, 151, 151, 0.295);
+}
+.nav-left-li:active {
+    background-color: rgba(151, 151, 151, 0.295);
+}
+#svg-img {
+    width: 15px;
+    height: 15px;
+    margin-right: 10px;
+    opacity: 0.5;
+}

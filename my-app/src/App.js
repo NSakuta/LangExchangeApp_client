@@ -2,8 +2,8 @@ import './App.css';
 import Header from './components/Header/Header';
 import {Route, Routes } from 'react-router-dom';
 import RegistrationForm from './components/Registration-form/js/RegistrationForm';
-import {useSelector } from 'react-redux';
-import { authSelector } from './store/appreducer/appReducer';
+import {useDispatch, useSelector } from 'react-redux';
+import { authSelector, authSuccess } from './store/appreducer/appReducer';
 import Login from './components/Login/Login';
 import Home from './components/Home/Home';
 import Users from './components/UsersList/js/UsersList';
@@ -12,10 +12,13 @@ import Blog from './components/Blog/Blog';
 import MenuLeftRoutes from './MenuLeft/MenuLeftRoutes';
 import UserView from './components/UserView/js/UserView';
 
-
 function App() {
 
 const auth = useSelector(authSelector);
+const dispatch = useDispatch();
+
+dispatch(authSuccess())
+
 
 console.log('auth: ', auth)
 

@@ -10,7 +10,7 @@ import { useForm } from 'react-cool-form';
 import { addNewMessageAction } from '../../../store/messageReducer/messagesReducer';
 import { findUserById } from '../../../store/userReducer/userReducer';
 
-const MessagesFromOneUser = () => {
+const MessagesBetweenTwoUsers = () => {
 
     const dispatch = useDispatch();
 
@@ -32,7 +32,6 @@ const MessagesFromOneUser = () => {
     const users = useSelector(userSelector);
 
     const user = findUserById(users, id)
-    console.log('user: ', user)
 
     let allMessagedByTwoUsers = messages.filter(
         el => (el.sentBy === id && el.recipient === currentUserId)
@@ -77,26 +76,37 @@ const MessagesFromOneUser = () => {
                 </div>
                 <div id="box-bottom-input">
                 <form ref={form}>
-                <p>Write your message</p>
-                <textarea id="inp-msg" name="text"></textarea>
+                <p id="inp-msg-title">Write your message</p>
+                <textarea id="textarea-msg" name="text"></textarea>
                 <br/>
                 <button type="submit">Send</button>
                 </form>
                     
                 </div>
                 </div>
-                <div className="wrapper-msg-right">
-                    <div className="x-center">
-                        <img id="box-avatar" src={user.img} alt="name"></img>
-                        <h4>{user.firstName}, {user.lastName}</h4>
-                        <p>{user.interests}</p>
+                {users.length !== 0 && <div className="wrapper-msg-right">
+                <div className="box" id="box-right">
+                    <div id="box-right-top">
+                    <div id="box-right-img" style={{ "background": `url(${user.img}) no-repeat center`, "backgroundSize": "100%" }}></div>
+                    </div>
+                    <div id="box-right-bottom">
+                        <div id="box-right-bottom-info">
+                            <h4 id="text-user-name">{user.firstName} {user.lastName}</h4>
+                            <p className="text-user" id="text-user-about">Some user´s information</p><br />
+                            <p className="text-user" id="text-user-learn">Learn: {user.practiceLanguage}</p>
+                            <p className="text-user" id="text-user-native">Native: {user.nativeLanguage}</p>
+                        </div>
+                        <div id="box-right-bottom-btn">
+                            <button className="right-bottom-btn" id="btn-view-profile">view profile</button>                          
+                        </div>
                     </div>
                 </div>
+                </div> }
         </div>
     )
 }
 
-export default MessagesFromOneUser;
+export default MessagesBetweenTwoUsers;
 
 
 

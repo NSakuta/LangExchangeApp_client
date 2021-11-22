@@ -15,7 +15,7 @@
     border-radius: 9px;
 }
 .box-header {
-    background-color: rgb(87, 187, 128);
+    background: rgb(43, 177, 148);
     border-radius: 9px 9px 0 0;
     height: 60px;
     text-align: center;
@@ -24,7 +24,7 @@
 .btn-login {
     width: 100%;
     margin: 0 auto;
-    background-color: rgb(87, 187, 128);
+    background: rgb(43, 177, 148);
     color: white;
     height: 35px;
     border-radius: 9px;
@@ -32,14 +32,14 @@
     transition: background-color 1s;
 }
 .btn-login:hover {
-    background-color: rgb(68, 143, 99);
+    background: rgb(32, 136, 113);
     color: white;
     cursor: pointer;
 }
 .btn-reg {
     cursor: pointer;
     border: none;
-    color: rgb(87, 187, 128);
+    color: rgb(43, 177, 148);
     text-transform: uppercase;
     text-decoration: underline;
     font-weight: 700;
@@ -70,7 +70,7 @@
     background-color: rgba(204, 203, 203, 0.404);
 }
 .styled-h6 {
-    color: rgb(87, 187, 128);
+    color: rgb(43, 177, 148);
     text-transform: uppercase;
     font-weight:600;
     margin: 0;

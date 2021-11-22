@@ -3,7 +3,7 @@ import './Login.css'
 import { getCurrentUserIdFromLocalStorage, loginAction } from '../../store/authReducer/authReducer';
 import { useForm } from 'react-cool-form';
 import { useDispatch, useSelector } from 'react-redux';
-import { authSelector } from '../../store/appreducer/appReducer';
+import { authSelector, isAuthTrue } from '../../store/appreducer/appReducer';
 import { Navigate } from 'react-router-dom';
 
 const Login = () => {

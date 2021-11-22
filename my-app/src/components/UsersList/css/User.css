@@ -2,23 +2,24 @@
     border-radius: 50%;
     width: 150px;
     height: 150px;
-    box-shadow: 0 4px 8px 0 rgba(146, 141, 141, 0.2), 0 6px 20px 0 rgba(180, 179, 179, 0.19);
+    box-shadow: 0 4px 8px 0 rgba(170, 164, 164, 0.2), 0 6px 20px 0 rgba(180, 179, 179, 0.19);
     margin: 20px auto;
 }
 #user-info {
     width: 90%;
     margin: 0 auto;
-    height: 240px;
+    height: 150px;
     overflow: hidden;
 }
 #user-mainInfo {
     text-align: center;
 }
-.user-name, .user-languages {
+.user-name, .user-card-text {
     margin: 0;
     padding: 0;
 }
-.user-languages {
+.user-card-text {
     display: inline;
-    margin-right: 10px;
+    color: gray;
+    font-size: 12px;
 }

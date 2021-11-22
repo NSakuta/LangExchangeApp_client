@@ -1,0 +1,209 @@
+#wrapper-userView {
+    width: 80%;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 10px;
+    grid-auto-rows: minmax(100px, auto); 
+    height: 100vh;  
+}
+.box {
+    width: 100%;
+    margin: 10px;
+    grid-template-columns: 1fr 1fr;
+    height: 100%;
+    margin-top: 40px;
+}
+
+/* Left box */
+
+#box-left {
+    box-shadow: 0 4px 8px 0 rgba(146, 141, 141, 0.2), 0 6px 20px 0 rgba(180, 179, 179, 0.19);
+    border-radius: 10px;
+    grid-column: 1 / 2;
+    grid-row: 1 / 3;
+}
+
+#box-left-top {
+    width: 100%;
+    height: 40%;
+    position: relative;
+    background: url('https://i.pinimg.com/564x/dd/cc/93/ddcc93aec1499cb734e2704a75b7297f.jpg');
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+#box-left-bottom {
+    width: 100%;
+    height: 60%;
+
+}
+#box-left-img {
+    position: absolute;
+    background: white;
+    top: 25%;
+    left: 15%;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    box-shadow: 0 4px 8px 0 rgba(146, 141, 141, 0.2), 0 6px 20px 0 rgba(180, 179, 179, 0.19);
+}
+#box-left-bottom-info {
+    width: 100%;
+    height: 30%;
+    text-align: center;
+    padding-top: 90px;
+    color: rgb(58, 57, 57);
+}
+.text-user {
+    color: rgb(94, 92, 92);
+    font-size: 12px;
+    display: inline-block;
+    margin: 5px;
+}
+#text-user-learn {
+    margin-right: 20px;
+}
+#text-user-name {
+    margin: 0;
+}
+#box-left-bottom-btns {
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+}
+.left-bottom-btns {
+    width: 35%;
+    height: 40px;
+    color: white;
+    border-radius: 15px;
+    margin: 0 10px;
+}
+#btn-add {
+    background-color: rgb(31, 114, 238);
+    border: none;
+    transition: background-color 1s;
+}
+#btn-add:hover {
+    background-color: rgb(75, 108, 136);
+    cursor: pointer;
+}
+#btn-contact {
+    background-color: rgb(43, 182, 112);
+    border: none;
+    transition: background-color 1s;
+}
+#btn-contact:hover {
+    background-color: rgb(35, 150, 93);
+    cursor: pointer;
+}
+
+/* Modal window */
+#modal-text {
+    width: 100%;
+    height: 110px;
+    margin-top: 20px;
+    border: 0.5px solid rgb(116, 114, 114);
+    border-radius: 10px;
+    resize: none;
+}
+#modal-btn-close {
+    position: absolute;
+    right: 15px;
+    background-color: rgb(168, 167, 167);
+    border: none;
+    border-radius: 10px;
+    color: white;
+    font-size: 12px;
+    padding: 3px 7px;
+    transition: background-color 1s;
+}
+#modal-btn-close:hover {
+    background-color: rgb(122, 120, 120);
+    cursor: pointer;
+}
+#modal-title {
+    color: rgb(94, 92, 92);
+    font-size: 12px;
+}
+#modal-btn-submit {
+    width: 70px;
+    height: 30px;
+    background-color: rgb(69, 175, 83);
+    border: none;
+    border-radius: 10px;
+    color: white;
+    position: absolute;
+    right: 15px;
+    top: 190px;
+}
+#modal-btn-submit:hover {
+    background-color: rgb(50, 128, 61);
+    cursor: pointer;
+}
+
+/* Right box */
+
+#box-right {
+    grid-column: 2 / 4;
+    grid-row: 1 / 3;
+    box-shadow: 0 4px 8px 0 rgba(146, 141, 141, 0.2), 0 6px 20px 0 rgba(180, 179, 179, 0.19);
+    border-radius: 10px;
+}
+#box-right-content {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 30px;
+    width: 90%;
+    margin: 0 auto;
+    height: 100%;
+}
+#box-right-h4 {
+    width: 100%;
+    height: 50px;
+    border: 1px solid rgba(212, 211, 211, 0.644);
+    border-radius: 7px;    
+    margin-top: 20px;
+    grid-column: 1 / 4;
+    grid-row: 1 / 2;
+}
+.box-right-style {
+    width: 100%;
+    height: fit-content;
+    padding: 5px;
+    border: 1px solid rgba(212, 211, 211, 0.644);
+    border-radius: 7px; 
+}
+#box-right-firstName {
+    grid-column: 1 / 2;
+    grid-row: 2 / 3;
+}
+#box-right-lastName { 
+    grid-column: 2 / 3;
+    grid-row: 2 / 3;
+}
+.profile-text-styled {
+    margin: 0;
+    margin-bottom: 8px;
+    color: rgb(94, 92, 92);
+    font-size: 12px;
+}
+#box-right-bdate {
+    grid-column: 1 / 2;
+    grid-row: 3 / 4;
+}
+#box-right-address {
+    grid-column: 2 / 3;
+    grid-row: 3 / 4;
+}
+#box-right-interests {
+    grid-column: 1 / 3;
+    grid-row: 4 / 5;
+}
+#box-right-aboutme {
+    grid-column: 1 / 3;
+    grid-row: 5 / 6;
+}
+
+/* Bottom box */
+
+

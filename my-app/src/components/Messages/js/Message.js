@@ -29,7 +29,7 @@ const Message = ({user, messages, currentUserId}) => {
             <div className="" style={{"backgroundImage": `${user.img}`}}>
                 <img className="avatar" src={user.img} alt="img"></img>
             </div>
-            <h3 className="msg-sentBy">{user.firstName}, {user.lastName}</h3> 
+            <h3 className="msg-sentBy">{user.firstName} {user.lastName}</h3> 
             {lastMessage ? <p id="msg-text">{lastMessage.text}</p> : <div></div>}
         </div>
     )
