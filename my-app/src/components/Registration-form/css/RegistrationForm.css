@@ -9,13 +9,15 @@
 
 .box-reg-right {
     display: grid;
-    margin: 50px auto;
-    width: 60%;
+    _margin: 20px auto;
+    margin-left: 20px;
+    width: 50%;
     grid-template-columns: 1fr;
     float: right;
 }
 .form-registration {
     display: grid;
+    position: relative;
     margin: 0 auto;
     width: 80%;
     grid-gap: 20px;
@@ -59,6 +61,9 @@ input, select {
     height: 40px;
     border-radius: 15px;
     transition: background-color 1s;
+    right: 0;
+    bottom: 0;
+    position: absolute;
 }
 .btn-submit:hover {
     background-color: rgb(67, 145, 99);

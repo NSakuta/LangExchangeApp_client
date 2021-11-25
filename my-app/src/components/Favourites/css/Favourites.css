@@ -1,0 +1,15 @@
+#wrapper-favourites {
+    display: flex;
+    flex-direction: row;
+    margin-left: 20%;
+}
+#box-fav {
+    height: 250px;
+    width: 200px;
+    margin: 0;
+    _box-shadow: 0 4px 8px 0 rgba(184, 182, 182, 0.2), 0 3px 3px 0 rgba(202, 201, 201, 0.19);
+    height: fit-content;
+    margin: 10px;
+    border-radius: 10px;
+    text-decoration: none;
+}

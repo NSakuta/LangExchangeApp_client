@@ -7,6 +7,8 @@ import { userSelector } from '../../store/userReducer/userReducer';
 import { useEffect } from 'react';
 import { getAllUsersAction } from '../../store/userReducer/userReducer';
 import { findUserById } from '../../store/userReducer/userReducer';
+const BASE_URL_IMAGE = 'http://localhost:8080/images/'
+
 
 export default function Header() {
 
@@ -38,7 +40,7 @@ export default function Header() {
                     <>
                         <ul className="nav-top">
                                 <NavLink className="nav-top-li" to={`/user/${currentUserId}/me`}>
-                                    <div id="nav-top-me" style={{"background": `url(${user.img}) no-repeat center`, "backgroundSize":"100%"}}></div>
+                                    <div id="nav-top-me" style={{"background": `url(${BASE_URL_IMAGE + user.img}) no-repeat center`, "backgroundSize":"cover"}}></div>
                                 </NavLink>
                             <li><NavLink className="nav-top-li" to='/users'>Find tandem</NavLink></li>
                             <li><NavLink className="nav-top-li" to='/blog'>Blog</NavLink></li>

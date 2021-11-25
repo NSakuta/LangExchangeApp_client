@@ -1,10 +1,12 @@
 import '../css/UsersList.css'
 import { useDispatch, useSelector } from "react-redux";
-import { currentUserSelector, getCurrentUserIdFromLocalStorage } from "../../../store/authReducer/authReducer";
+import { getCurrentUserIdFromLocalStorage } from "../../../store/authReducer/authReducer";
 import { useEffect } from "react";
 import { getAllUsersAction, userSelector } from "../../../store/userReducer/userReducer";
 import User from "./User";
 import { NavLink } from 'react-router-dom';
+import Search from './Search';
+
 
 const Users = () => {
     
@@ -17,11 +19,12 @@ const Users = () => {
         dispatch(getAllUsersAction())
     }, [dispatch])
 
-    const users = useSelector(userSelector)
-    console.log('users: ', users)
+    let users = useSelector(userSelector)
+
 
     return (
         <div id="wrapper">
+            <Search/>
             <div id="wrapper-users">
                 {users.map(el => {
                     if(currentUserId !== el._id) {
@@ -32,8 +35,7 @@ const Users = () => {
                             </NavLink>
                             )
                         }
-                    })
-    	        }
+                    })} 
             </div>
         </div>
     )

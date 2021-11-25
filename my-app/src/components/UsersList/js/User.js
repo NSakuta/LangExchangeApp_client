@@ -1,12 +1,14 @@
 import '../css/User.css';
 import '../../../App.css'
+const BASE_URL_IMAGE = 'http://localhost:8080/images/';
+
 
 
 const User = ({user}) => {
 
     return (
         <div>
-            <div id="user-img" style={{"background": `url(${user.img}) no-repeat center`, "backgroundSize":"115%"}}>
+            <div id="user-img" style={{"background": `url(${BASE_URL_IMAGE + user.img}) no-repeat center`, "backgroundSize":"cover"}}>
             </div>
             <div id="user-info">
                 <div id="user-mainInfo">

@@ -2,28 +2,25 @@ import '../css/MessagesBetweenTwoUsers.css'
 import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { messagesSelector} from '../../../store/messageReducer/messagesReducer';
-import { useContext, useEffect } from 'react';
+import { useEffect } from 'react';
 import { userSelector } from '../../../store/userReducer/userReducer';
-import { currentUserSelector, setCurrentUserAction } from '../../../store/authReducer/authReducer'
 import { getAllUsersAction } from '../../../store/userReducer/userReducer';
 import { useForm } from 'react-cool-form';
 import { addNewMessageAction } from '../../../store/messageReducer/messagesReducer';
 import { findUserById } from '../../../store/userReducer/userReducer';
+import { useNavigate } from 'react-router';
+const BASE_URL_IMAGE = 'http://localhost:8080/images/';
 
 const MessagesBetweenTwoUsers = () => {
 
     const dispatch = useDispatch();
-
-    // useEffect(() => {
-    //     dispatch(setCurrentUserAction())
-    // }, [dispatch])
+    const navigate = useNavigate();
 
     useEffect(() => {
         dispatch(getAllUsersAction())
     }, [dispatch])
 
     const messages = useSelector(messagesSelector);
-    // const currentUserId = useSelector(currentUserSelector);
 
     const currentUserId = JSON.parse(localStorage.getItem('USER_ID'));
     
@@ -87,7 +84,7 @@ const MessagesBetweenTwoUsers = () => {
                 {users.length !== 0 && <div className="wrapper-msg-right">
                 <div className="box" id="box-right">
                     <div id="box-right-top">
-                    <div id="box-right-img" style={{ "background": `url(${user.img}) no-repeat center`, "backgroundSize": "100%" }}></div>
+                    <div id="box-right-img" style={{ "background": `url(${BASE_URL_IMAGE + user.img}) no-repeat center`, "backgroundSize": "cover" }}></div>
                     </div>
                     <div id="box-right-bottom">
                         <div id="box-right-bottom-info">
@@ -97,7 +94,7 @@ const MessagesBetweenTwoUsers = () => {
                             <p className="text-user" id="text-user-native">Native: {user.nativeLanguage}</p>
                         </div>
                         <div id="box-right-bottom-btn">
-                            <button className="right-bottom-btn" id="btn-view-profile">view profile</button>                          
+                            <button className="right-bottom-btn" id="btn-view-profile" onClick={() => navigate(`/users/${user._id}`)}>view profile</button>                          
                         </div>
                     </div>
                 </div>

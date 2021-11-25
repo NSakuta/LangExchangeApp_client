@@ -12,13 +12,14 @@ import Error from './Error';
 import React from 'react';
 import client from '../../../api/api';
 import defaultAvatar from '../../../img-svg/default-image.jpg';
-
+import { useNavigate } from 'react-router';
 
 
 const RegistrationForm = () => {
 
   const [img, setImg] = React.useState(null);
   const [avatar, setAvatar] = React.useState(null);
+  const navigate = useNavigate()
 
       console.log('avatar', avatar)
   
@@ -35,7 +36,7 @@ const RegistrationForm = () => {
               })
               .then(res => {
                   console.log('res', res)
-                  return setAvatar('http://localhost:8080/images/' + res.data.filename)
+                  return setAvatar(res.data.filename)
               })
   
           } catch (err) {
@@ -43,7 +44,7 @@ const RegistrationForm = () => {
           }
       }, [img]);
      
-      ///////////////////////
+///////////////////////
 
     const dispatch = useDispatch();
     const errByAddUser = useSelector(errorSelector);
@@ -115,15 +116,11 @@ const RegistrationForm = () => {
         onSubmit: (values, {reset}) =>{
             console.log("onSubmit: ", values)
             dispatch(addNewUserAction({...values, img: avatar}));
-            reset()
+            navigate('/auth/login')
         }
       });
 
       const errors = use("errors", { errorWithTouched: true }); // Default is "false"
-
-
-      ///////////////////////Avatar
-
       
 
     return (
@@ -133,7 +130,7 @@ const RegistrationForm = () => {
               {errByAddUser ? <Error text={errByAddUser.error}></Error> : <div></div>}
               <div>
                   {avatar ? 
-                      <div id="avatar" style={{"background": `url(${avatar}) no-repeat center`, "backgroundSize": "100%" }} alt="avatar"></div>
+                      <div id="avatar" style={{"background": `url(http://localhost:8080/images/${avatar}) no-repeat center`, "backgroundSize": "cover" }} alt="avatar"></div>
                       : 
                       <div id="avatar" style={{"background": `url(${defaultAvatar}) no-repeat center`, "backgroundSize": "100%" }} alt="defaultAvatar"></div>
                   }
@@ -240,7 +237,7 @@ const RegistrationForm = () => {
                 error={errors.description}
                 className="two-columns"
               />
-              <input className="btn-submit" type="submit"/>
+              <input className="btn-submit" type="submit"></input>
             </form>
         </div>
       </div>

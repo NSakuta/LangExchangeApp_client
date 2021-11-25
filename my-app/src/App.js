@@ -11,6 +11,9 @@ import UserHomePage from './components/UserHomePage/UserHomePage.js';
 import Blog from './components/Blog/Blog';
 import MenuLeftRoutes from './MenuLeft/MenuLeftRoutes';
 import UserView from './components/UserView/js/UserView';
+import UsersListFilterByTwoLanguages from './components/UsersList/js/UsersListFilterByTwoLanguages';
+import UsersListFilterByNativeLanguage from './components/UsersList/js/UsersListFilterByNativeLanguage';
+import UsersListFilterByPracticeLanguage from './components/UsersList/js/UsersListFilterByPracticeLanguage';
 
 function App() {
 
@@ -34,6 +37,9 @@ console.log('auth: ', auth)
         <Route path='blog' element={<Blog/>} ></Route>
         <Route path='user/:id/*' element={<UserHomePage/>} ></Route>
         <Route path='user/:id/me/*' element={<MenuLeftRoutes/>}></Route>
+        <Route path='/users/native=:native/practice=:practice' element={<UsersListFilterByTwoLanguages/>}></Route>
+        <Route path='/users/native=:native' element={<UsersListFilterByNativeLanguage/>}></Route>
+        <Route path='/users/practice=:practice' element={<UsersListFilterByPracticeLanguage/>}></Route>
       </Routes>
     </div>
   );

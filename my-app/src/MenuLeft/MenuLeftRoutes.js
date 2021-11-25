@@ -1,8 +1,9 @@
 import { Route, Routes } from 'react-router-dom';
-import UserProfile from '../components/UserProfile/UserProfile';
+import UserProfile from '../components/UserProfile/js/UserProfile';
 import MenuLeft from './MenuLeft';
 import MessagesBetweenTwoUsers from '../components/Messages/js/MessagesBetweenTwoUsers'
 import MessagesBetweenAllUsers from '../components/Messages/js/MessagesBetweenAllUsers'
+import Favourites from '../components/Favourites/js/Favourites';
 
 const MenuLeftRoutes = () => {
     return (
@@ -12,6 +13,7 @@ const MenuLeftRoutes = () => {
                 <Route path='profile' element={<UserProfile></UserProfile>}></Route>
                 <Route path='messages/*' element={<MessagesBetweenAllUsers></MessagesBetweenAllUsers>}></Route>
                 <Route path='messages/:id/*' element={<MessagesBetweenTwoUsers></MessagesBetweenTwoUsers>}></Route>
+                <Route path='favourites' element={<Favourites/>}></Route>
             </Routes>
         </div>
     )

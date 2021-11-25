@@ -2,6 +2,7 @@ import '../css/Message.css';
 import { useEffect } from 'react';
 import { getAllMessagesAction } from '../../../store/messageReducer/messagesReducer';
 import { useDispatch } from 'react-redux';
+const BASE_URL_IMAGE = 'http://localhost:8080/images/'
 
 const Message = ({user, messages, currentUserId}) => {
 
@@ -26,8 +27,8 @@ const Message = ({user, messages, currentUserId}) => {
 
     return (
         <div className="box-message">
-            <div className="" style={{"backgroundImage": `${user.img}`}}>
-                <img className="avatar" src={user.img} alt="img"></img>
+            <div className="">
+                <div className="avatar" style={{"background": `url(${BASE_URL_IMAGE + user.img}) no-repeat center`, "backgroundSize":"cover"}}></div>
             </div>
             <h3 className="msg-sentBy">{user.firstName} {user.lastName}</h3> 
             {lastMessage ? <p id="msg-text">{lastMessage.text}</p> : <div></div>}

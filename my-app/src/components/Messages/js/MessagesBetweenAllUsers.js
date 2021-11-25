@@ -13,7 +13,6 @@ import { getCurrentUserIdFromLocalStorage } from '../../../store/authReducer/aut
 import { findUserById } from '../../../store/userReducer/userReducer';
 import { findReceivedMessagesByUserId, findSentMessagesByUserId } from '../../../store/messageReducer/messagesReducer';
 
-
 const MessagesPage = () => {
 
     const dispatch = useDispatch();

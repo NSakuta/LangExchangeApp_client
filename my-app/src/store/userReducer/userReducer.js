@@ -18,10 +18,10 @@ const userReducer = createSlice({
         addUser: (state, {payload}) => {
             state.users.push(payload)
         },
-        addNewValueToUser: (state, {payload}) => {
-            const index = state.users.findIndex(el => el._id === payload.id)
-            state.users[index] = payload.newValue
-        },
+        // addNewValueToUser: (state, {payload}) => {
+        //     const index = state.users.findIndex(el => el._id === payload.id)
+        //     state.users[index] = payload.newValue
+        // },
         setError: (state, {payload}) => {
             state.error = payload.error
         }
@@ -62,12 +62,26 @@ export const addNewUserAction = (newUser) => {
     }
 }
 
+export const addFavouritesAction = (id, newValue) => {
+    return async dispatch => {
+        dispatch(startLoading());
+        try {
+            await updateUser(id, {favourites: newValue});
+            
+            // dispatch(addNewValueToUser({id, newValue}))
+        } catch(err) {
+            console.log(err.message)
+        } finally {
+            dispatch(stopLoading())
+        }
+    }
+}
 export const updateUserAction = (id, newValue) => {
     return async dispatch => {
         dispatch(startLoading());
         try {
             await updateUser(id, newValue);
-            dispatch(addNewValueToUser({id, newValue}))
+            // updateUsers();
         } catch(err) {
             console.log(err.message)
         } finally {
@@ -79,5 +93,17 @@ export const updateUserAction = (id, newValue) => {
 export const findUserById = (array, id) => {
     return array.find(el => el._id === id)
   }
+
+export const updateUsers = () => {
+    return async dispatch => {
+        try {
+            const newUsers = await getAllUsers();
+            dispatch(setUsers(newUsers))
+        } catch (err) {
+            console.log(err.message)
+        }
+    }
+    
+}
 
 

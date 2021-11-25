@@ -1,33 +1,32 @@
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
-import { findUserById, getAllUsersAction } from '../../../store/userReducer/userReducer';
+import { addFavouritesAction, findUserById, getAllUsersAction } from '../../../store/userReducer/userReducer';
 import { userSelector } from '../../../store/userReducer/userReducer';
 import { useEffect } from 'react';
 import { useParams } from 'react-router';
-import { currentUserSelector } from '../../../store/authReducer/authReducer';
+import { getCurrentUserIdFromLocalStorage } from '../../../store/authReducer/authReducer';
 import '../css/UserView.css';
 import { useState } from 'react';
 import Modal from 'react-modal';
 import { useForm } from 'react-cool-form';
 import { addNewMessageAction } from '../../../store/messageReducer/messagesReducer';
+const BASE_URL_IMAGE = 'http://localhost:8080/images/'
+
 
 
 const UserView = () => {
 
-    //const currentUserId = useSelector(currentUserSelector);
     const dispatch = useDispatch();
-    const { id } = useParams();
-    const currentUserId = useSelector(currentUserSelector);
 
     useEffect(() => {
         dispatch(getAllUsersAction())
     }, [dispatch])
 
+    const { id } = useParams();
     const allUsers = useSelector(userSelector)
+    const currentUserId = getCurrentUserIdFromLocalStorage();
+    const currentUser = findUserById(allUsers, currentUserId);
     const user = findUserById(allUsers, id);
-
-    console.log('user:', user)
-
 
     //////////////Form
 
@@ -69,12 +68,23 @@ const UserView = () => {
         setIsOpen(false);
     }
 
+    function addToFavourites() {
+        let favourites = Object.assign([], currentUser.favourites)
+        let isDouble = false;
+        isDouble = favourites.includes(user._id)
+        console.log('isDouble:', isDouble)
+        if(!isDouble) {
+            favourites.push(user._id)
+            dispatch(addFavouritesAction(currentUserId, favourites))
+        }
+    }
+
     return (
         <>
             {allUsers.length !== 0 && <div id="wrapper-userView">
                 <div className="box" id="box-left">
                     <div id="box-left-top"></div>
-                    <div id="box-left-img" style={{ "background": `url(${user.img}) no-repeat center`, "backgroundSize": "100%" }}></div>
+                    <div id="box-left-img" style={{ "background": `url(${BASE_URL_IMAGE + user.img}) no-repeat center`, "backgroundSize": "cover" }}></div>
                     <div id="box-left-bottom">
                         <div id="box-left-bottom-info">
                             <h4 id="text-user-name">{user.firstName} {user.lastName}</h4>
@@ -83,7 +93,9 @@ const UserView = () => {
                             <p className="text-user" id="text-user-native">Native: {user.nativeLanguage}</p>
                         </div>
                         <div id="box-left-bottom-btns">
-                            <button className="left-bottom-btns" id="btn-add">add to favourites</button>
+                            <button className="left-bottom-btns" id="btn-add" onClick={() => addToFavourites()} 
+                                
+                            >add to favourites</button>
                             <button onClick={openModal} className="left-bottom-btns" id="btn-contact">send message</button>
                             <Modal
                                 isOpen={modalIsOpen}
