@@ -27,7 +27,7 @@ const appReducer = createSlice({
 
 export default appReducer.reducer;
 export const {startLoading, stopLoading, authSuccess, logout} = appReducer.actions;
-export const appSelector = state => state.app.isLoading;
+export const loaderSelector = state => state.app.isLoading;
 export const authSelector = state => state.app.isAuth;
 
 export const logoutAction = () => {
@@ -38,10 +38,3 @@ export const logoutAction = () => {
         dispatch(logout({isAuth: false}))
     }
 }
-
-// export const isAuthTrue = () => {
-//     return dispatch => {
-//         const value = localStorage.getItem('TOKEN') !== null;
-//         dispatch(authSuccess, ({isAuth: value}))
-//     }
-// }

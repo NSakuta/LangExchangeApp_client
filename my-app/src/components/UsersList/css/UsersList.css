@@ -1,5 +1,6 @@
 #wrapper-users {
     display: flex;
+    flex-wrap: wrap;
     width: 90%;
     margin: 0 auto;
 }
@@ -7,8 +8,8 @@
     width: 100%;
 }
 #box {
-    height: 250px;
-    width: calc(100% / 6);
+    height: 180px;
+    width: 180px;
     margin: 0;
     box-shadow: 0 4px 8px 0 rgba(184, 182, 182, 0.2), 0 3px 3px 0 rgba(202, 201, 201, 0.19);
     height: fit-content;

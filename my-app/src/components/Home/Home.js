@@ -1,11 +1,14 @@
 import './Home.css'
+import bg from '../../img-svg/26451688.jpg'
+
 
 const Home = () => {
     return (
         <div id="home-wrapper">
-            <img id="home-bg" src='https://www.fonial.de/fileadmin/_processed_/4/b/csm_teamwork_024af95b61.jpg' alt="bg-home">
-
-            </img>
+            <img id="home-bg" src={bg} alt="bg-home"></img>
+            <div id="home-text">
+                <h1 id="home-text-h1">Speak with Us!</h1>
+            </div>
         </div>
     )
 }

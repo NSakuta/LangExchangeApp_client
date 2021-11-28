@@ -1,19 +1,14 @@
-#profile-view-avatar {
-    width: 200px;
-    height: 200px;
-    border-radius: 50%;
-    margin: 0 auto;
-    _margin-top: 100px;
-}
 #wrapper-profile {
     margin-left: 20%;
     display: flex;
     flex-direction: row;
+    height: 100vh;
 }
 #profile-avatar {
-    width: 200px;
-    height: 200px;
+    width: 220px;
+    height: 220px;
     border-radius: 50%;
+    margin: 30px auto;
 }
 #btn-profile-setAvatar {
     background-color: rgb(31, 114, 238);
@@ -31,29 +26,22 @@
 }
 #box-profile-avatar {
     width: 40%;
-    _background-color: green;
     text-align: center;
+    margin-top: 70px;
 }
 #box-profile-information {
     width: 60%;
-
 }
 .form-profile {
     display: grid;
     position: relative;
-    _margin: 0 auto;
     width: 100%;
     grid-gap: 20px;
     grid-template-columns: 1fr 1fr;
-    _margin-top: 40px;
-    _border-radius: 9px;
 }
 #box-profile-container {
     width: fit-content;
-    margin: 0 auto;
-}
-#profile-avatar {
-    margin: 0 auto;
+    margin: o auto;
 }
 
 

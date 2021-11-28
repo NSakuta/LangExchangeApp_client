@@ -1,4 +1,4 @@
-#box-error {
+#box-error-login {
     margin: 20px auto;
     background-color: rgba(231, 185, 186, 0.13);
     padding:10px;
@@ -8,10 +8,8 @@
     border-radius:5px;
     text-align:center;
 }
-#text-error {
+#text-error-login {
     color:rgba(255, 0, 0, 0.63);
     font-size:14px;
     margin: 0;
 }
-       
-    

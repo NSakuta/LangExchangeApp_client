@@ -1,11 +1,10 @@
 import {createSlice} from '@reduxjs/toolkit';
 import { startLoading, stopLoading } from '../appreducer/appReducer';
-import { addNewUser, getAllUsers, getUserByid, updateUser } from '../../api/user.api';
-import { login } from '../../api/auth.api';
+import { addNewUser, getAllUsers, updateUser } from '../../api/user.api';
 
 const initialState = {
     users: [],
-    error: false
+    error: null,
 };
 
 const userReducer = createSlice({
@@ -31,10 +30,11 @@ const userReducer = createSlice({
 export default userReducer.reducer;
 export const {setUsers, addUser, addNewValueToUser, setError} = userReducer.actions;
 export const userSelector = state => state.user.users;
-export const errorSelector = state => state.user.error;
+export const errorUserSelector = state => state.user.error;
 
 export const getAllUsersAction = () => {
     return async dispatch => {
+        dispatch(setError({error: null}))
         dispatch(startLoading());
         try {
             const response = await getAllUsers();
@@ -43,19 +43,21 @@ export const getAllUsersAction = () => {
             dispatch(setError({error: err.message}))
             console.log(err.message);
         } finally {
-            dispatch(stopLoading);
+            dispatch(stopLoading());
         }
     }
 }
 
 export const addNewUserAction = (newUser) => {
     return async dispatch => {
+        dispatch(setError({error: null}))
         dispatch(startLoading());
         try {
             const response = await addNewUser(newUser);
             dispatch(addUser({...response}));
         } catch(err) {
-            console.log(err.message);
+            console.log('err.message: ', err.message)
+            dispatch(setError({error: err.message}))
         } finally {
             dispatch(stopLoading());
         }
@@ -64,13 +66,13 @@ export const addNewUserAction = (newUser) => {
 
 export const addFavouritesAction = (id, newValue) => {
     return async dispatch => {
+        dispatch(setError({error: null}))
         dispatch(startLoading());
         try {
             await updateUser(id, {favourites: newValue});
-            
             // dispatch(addNewValueToUser({id, newValue}))
         } catch(err) {
-            console.log(err.message)
+            dispatch(setError({error: err.message}))
         } finally {
             dispatch(stopLoading())
         }
@@ -78,12 +80,13 @@ export const addFavouritesAction = (id, newValue) => {
 }
 export const updateUserAction = (id, newValue) => {
     return async dispatch => {
+        dispatch(setError({error: null}))
         dispatch(startLoading());
         try {
             await updateUser(id, newValue);
             // updateUsers();
         } catch(err) {
-            console.log(err.message)
+            dispatch(setError({error: err.message}))
         } finally {
             dispatch(stopLoading())
         }

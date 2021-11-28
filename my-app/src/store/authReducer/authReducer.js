@@ -29,12 +29,13 @@ const authReducer = createSlice({
 
 export default authReducer.reducer;
 export const {setError, clearError, setCurrentUser, removeCurrentUser} = authReducer.actions;
-export const errorSelector = state => state.auth.error;
+export const errorAuthSelector = state => state.auth.error;
 export const currentUserSelector = state => state.auth.currentUser;
 
 
 export const loginAction = (data) => {
     return async dispatch => {
+        dispatch(setError({error: null}));
         dispatch(startLoading());
         try {
             const response = await login(data);
@@ -52,4 +53,10 @@ export const loginAction = (data) => {
 
 export const getCurrentUserIdFromLocalStorage = () => {
     return JSON.parse(localStorage.getItem('USER_ID')) || null;
+}
+
+export const resetErrorAction = () => {
+    return dispatch => {
+        dispatch(setError({error: null}))
+    }
 }

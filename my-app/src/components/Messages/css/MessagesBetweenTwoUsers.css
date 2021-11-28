@@ -1,12 +1,12 @@
 .wrapper-msg {
-    width: 80%;
+    _width: 80%;
     display: flex;
     margin: 0;
     justify-content: space-evenly;
-    margin-left: 20%;
+    margin-left: 200px;
 }
 .wrapper-msg-left{
-    width: 70%;
+    width: 100%;
     height: 100vh;
     position: relative;
     display: flex;
@@ -15,7 +15,7 @@
 
 .wrapper-msg-right{
     background-color: rgba(231, 231, 231, 0.699);
-    width: 30%;
+    width: 450px;
     height: 100vh;
 }
 .left {
@@ -81,7 +81,9 @@
 #box-right {
     box-shadow: 0 4px 8px 0 rgba(146, 141, 141, 0.2), 0 6px 20px 0 rgba(180, 179, 179, 0.19);
     border-radius: 10px;
-    
+    width: 100%;
+    grid-template-columns: 1fr 1fr;
+    height: 100%;
 }
 #box-right-top {
     width: 100%;
@@ -100,7 +102,8 @@
     position: absolute;
     background: white;
     top: 50%;
-    left: 20%;
+    left: 80px;
+    margin: 0 auto;
     width: 200px;
     height: 200px;
     border-radius: 50%;
@@ -153,13 +156,35 @@
     font-size: 12px;
 }
 #textarea-msg {
-    width: 90%;
-    height: 100px;
-    margin: 0 auto;
+    width: 92%;
+    height: 120px;
     border-radius: 9px;
     border: 0.5px solid rgb(172, 167, 167);
     resize: none;
 }
+#btn-send {
+    width: 100px;
+    height: 40px;
+    position: absolute;
+    right: 15px;
+    color: white;
+    border-radius: 15px;
+    margin: 10px;
+    background-color: rgb(31, 114, 238);
+    border: none;
+    transition: background-color 1s;
+}
+#btn-send:hover {
+    background-color: rgb(24, 92, 194);
+    cursor: pointer;
+}
+#box-bottom-message {
+    text-align: center;
+}
+#box-bottom-form {
+    position: relative;
+}
+
 
 
 

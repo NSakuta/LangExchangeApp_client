@@ -11,7 +11,7 @@ export const sendFile = async (img) => {
         )
         return response.data.path;
     } catch(err) {
-        console.log(err.message)
+        throw new Error(err.response.data.message)
     }
 }
 
@@ -21,7 +21,7 @@ export const addNewMessage = async (newMessage) => {
         console.log(response.data);
         return response.data;
     } catch(err) {
-        console.log(err.message)
+        throw new Error(err.response.data.message)
     }
 };
 

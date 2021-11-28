@@ -17,7 +17,7 @@ const User = ({user}) => {
                     <p className="user-card-text">Practice: </p><p className="user-card-text">{user.practiceLanguage}</p>
                     <br/>
                     <br/>
-                    <p className="user-card-text">User´s short information</p>
+                    <p className="user-card-text">{user.about}</p>
                 </div>
             </div>
         </div>

@@ -1,22 +1,27 @@
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { addFavouritesAction, findUserById, getAllUsersAction } from '../../../store/userReducer/userReducer';
+import { authSuccess } from '../../../store/appreducer/appReducer';
 import { userSelector } from '../../../store/userReducer/userReducer';
 import { useEffect } from 'react';
-import { useParams } from 'react-router';
+import { useNavigate, useParams } from 'react-router';
 import { getCurrentUserIdFromLocalStorage } from '../../../store/authReducer/authReducer';
 import '../css/UserView.css';
 import { useState } from 'react';
 import Modal from 'react-modal';
 import { useForm } from 'react-cool-form';
 import { addNewMessageAction } from '../../../store/messageReducer/messagesReducer';
-const BASE_URL_IMAGE = 'http://localhost:8080/images/'
-
+import { authSelector } from '../../../store/appreducer/appReducer';
+const BASE_URL_IMAGE = 'http://localhost:8080/images/';
 
 
 const UserView = () => {
 
     const dispatch = useDispatch();
+    const auth = useSelector(authSelector);
+    const navigate = useNavigate();
+
+    dispatch(authSuccess())
 
     useEffect(() => {
         dispatch(getAllUsersAction())
@@ -88,11 +93,11 @@ const UserView = () => {
                     <div id="box-left-bottom">
                         <div id="box-left-bottom-info">
                             <h4 id="text-user-name">{user.firstName} {user.lastName}</h4>
-                            <p className="text-user" id="text-user-about">Some user´s information</p><br />
+                            <p className="text-user" id="text-user-about">{user.about}</p><br />
                             <p className="text-user" id="text-user-learn">Learn: {user.practiceLanguage}</p>
                             <p className="text-user" id="text-user-native">Native: {user.nativeLanguage}</p>
                         </div>
-                        <div id="box-left-bottom-btns">
+                        {auth ? <div id="box-left-bottom-btns">
                             <button className="left-bottom-btns" id="btn-add" onClick={() => addToFavourites()} 
                                 
                             >add to favourites</button>
@@ -101,8 +106,7 @@ const UserView = () => {
                                 isOpen={modalIsOpen}
                                 onRequestClose={closeModal}
                                 style={customStyles}
-                                contentLabel="Example Modal"
-                            >
+                                contentLabel="Example Modal">
                                 <button id="modal-btn-close" onClick={closeModal}>X</button>
                                 <div id="modal-title">Write your message:</div>
                                 <form ref={form} noValidate>
@@ -111,6 +115,13 @@ const UserView = () => {
                                 </form>
                             </Modal>
                         </div>
+                        : 
+                        <div id="box-left-bottom-btns">
+                            <p className="text-user">Please login or register to contact a person</p>
+                            <button onClick={() => navigate('/auth/login')} className="left-bottom-btns" id="btn-contact">login</button>
+                        </div>
+                        }
+                        
                     </div>
                 </div>
                 <div className="box" id="box-right">

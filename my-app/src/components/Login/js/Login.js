@@ -1,17 +1,19 @@
 import { NavLink } from 'react-router-dom';
-import './Login.css'
-import { getCurrentUserIdFromLocalStorage, loginAction } from '../../store/authReducer/authReducer';
+import '../css/Login.css'
+import { errorAuthSelector, getCurrentUserIdFromLocalStorage, loginAction, resetErrorAction } from '../../../store/authReducer/authReducer';
 import { useForm } from 'react-cool-form';
 import { useDispatch, useSelector } from 'react-redux';
-import { authSelector, isAuthTrue } from '../../store/appreducer/appReducer';
+import { authSelector, isAuthTrue } from '../../../store/appreducer/appReducer';
 import { Navigate } from 'react-router-dom';
+import Error from '../../Registration-form/js/Error';
 
 const Login = () => {
 
     const dispatch = useDispatch();
     const auth = useSelector(authSelector);
     const currentUserId = getCurrentUserIdFromLocalStorage();
-
+    const errByLogin = useSelector(errorAuthSelector);
+    
     const initialValues = {
         email: '',
         password: ''
@@ -19,7 +21,7 @@ const Login = () => {
 
     const {form} = useForm({
         defaultValues: initialValues,
-        onSubmit: (values, {reset}) =>{
+        onSubmit: (values, {reset}) => {
             dispatch(loginAction(values));
             reset()
         }
@@ -28,9 +30,10 @@ const Login = () => {
     console.log('auth: ', auth)
 
     return (
+        <div>
+                {errByLogin && <Error text={errByLogin}></Error>}
         <div className="box-login">
             {auth && <Navigate to={`/user/${currentUserId}/me`}></Navigate>}
-
             <form ref={form} noValidate>
                 <div className="box-header">
                     <h4 className="styled-h4">Login</h4>
@@ -61,6 +64,7 @@ const Login = () => {
                     <NavLink to="/auth/signup"><button className="btn-reg">Sign up now</button></NavLink>
                 </div>
             </form>
+        </div>
         </div>
     )
 }

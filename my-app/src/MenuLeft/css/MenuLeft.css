@@ -1,7 +1,7 @@
 #menu-left {
     position: absolute;
     left: 0;
-    width: 15%;
+    width: 200px;
     height: 100vh;
     background-color: rgba(151, 151, 151, 0.068);
 }

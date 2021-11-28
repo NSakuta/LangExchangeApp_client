@@ -20,16 +20,9 @@ const Profile = () => {
     const currentUserId = getCurrentUserIdFromLocalStorage();
     const dispatch = useDispatch();
 
-    console.log(currentUserId);
-
     useEffect(() => {
         dispatch(getAllUsersAction())
     }, [dispatch])
-
-    useEffect(() => {
-        dispatch(updateUserAction())
-    }, [dispatch])
-    
 
     const users = useSelector(userSelector)
     const currentUser = findUserById(users, currentUserId);
@@ -39,7 +32,6 @@ const Profile = () => {
 
     const [img, setImg] = React.useState(null);
     const [avatar, setAvatar] = React.useState(null);
-    //const navigate = useNavigate()
 
     console.log('avatar', avatar)
 
@@ -137,7 +129,6 @@ const Profile = () => {
             } else {
                 dispatch(updateUserAction(currentUserId, values));
             }
-            //navigate('/auth/login')
         }
     });
 
@@ -145,7 +136,8 @@ const Profile = () => {
 
 
     return (
-        <div id="wrapper-profile">
+        <>
+        {users.length === 0 ? <div></div> : <div id="wrapper-profile">
             <div id="box-profile-information">
                 <div>
                     <h4>Profile information: </h4>
@@ -257,11 +249,16 @@ const Profile = () => {
                             <div id="profile-avatar" style={{"background": `url(http://localhost:8080/images/${currentUser.img}) no-repeat center`, "backgroundSize": "cover" }} alt="defaultAvatar"></div>
                         }    
                   
-                    <input id="btn-profile-setAvatar" type="file" onChange={e => setImg(e.target.files[0])} name="img"></input>
-                    <br />
-                    <button id="btn-profile-setAvatar" onClick={sendFile}>set avatar</button>
+                  <input id="upload" type="file" style={{"display": "none"}} onChange={e => setImg(e.target.files[0])}></input>
+                    <div id="btns-upload">
+                        <input id="btn-upload" value="browse..." type="button" onClick={() => document.getElementById('upload').click()}  name="img"></input>
+                        <button id="btn-setAvatar" onClick={sendFile}>change avatar</button>
+                    </div>
                     </div>
         </div>
+        }
+        </>
+        
     )
 }
 

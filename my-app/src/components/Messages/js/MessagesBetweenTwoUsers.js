@@ -58,7 +58,8 @@ const MessagesBetweenTwoUsers = () => {
                     {allMessagedByTwoUsers.map(el => {
                         if(el.sentBy === currentUserId) {
                             return (
-                                    <div className="right">{el.text}
+                                    <div className="right">{el.text}{el.createdAt}
+
                                         <p id="sign">me</p>
                                     </div>
                                 )
@@ -66,23 +67,25 @@ const MessagesBetweenTwoUsers = () => {
                             return (
                                     <div className="left">
                                         {el.text}
+                                        {el.createdAt}
                                     </div>
                             )
                         }
                     })}
                 </div>
-                <div id="box-bottom-input">
-                <form ref={form}>
-                <p id="inp-msg-title">Write your message</p>
-                <textarea id="textarea-msg" name="text"></textarea>
-                <br/>
-                <button type="submit">Send</button>
-                </form>
-                    
-                </div>
+                    <div id="box-bottom-input">
+                        <form id="box-bottom-form" ref={form}>
+                            <div id="box-bottom-message">
+                                <textarea id="textarea-msg" name="text" placeholder="Write your message"></textarea>
+                                <br/>
+                            </div>
+                            <button id="btn-send" type="submit">Send</button>
+                        </form>
+                        
+                    </div>
                 </div>
                 {users.length !== 0 && <div className="wrapper-msg-right">
-                <div className="box" id="box-right">
+                <div id="box-right">
                     <div id="box-right-top">
                     <div id="box-right-img" style={{ "background": `url(${BASE_URL_IMAGE + user.img}) no-repeat center`, "backgroundSize": "cover" }}></div>
                     </div>
