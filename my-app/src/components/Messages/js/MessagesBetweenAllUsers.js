@@ -13,7 +13,6 @@ import { getCurrentUserIdFromLocalStorage } from '../../../store/authReducer/aut
 import { findUserById } from '../../../store/userReducer/userReducer';
 import { findReceivedMessagesByUserId, findSentMessagesByUserId } from '../../../store/messageReducer/messagesReducer';
 
-
 const MessagesPage = () => {
 
     const dispatch = useDispatch();
@@ -87,7 +86,7 @@ const MessagesPage = () => {
                     <div>
                         {uniqueUsers.map(el => {
                                 return (
-                                    <NavLink key={el._id} to={`/user/${currentUserId}/me/messages/${el._id}`}>
+                                    <NavLink id="box-msg" key={el._id} to={`/user/${currentUserId}/me/messages/${el._id}`}>
                                     <Message key={el._id}
                                     user={el}
                                     users={users}

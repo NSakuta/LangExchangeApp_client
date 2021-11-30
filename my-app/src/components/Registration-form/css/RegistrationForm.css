@@ -1,18 +1,29 @@
-.reg-wrapper {
-    display: grid;
-    margin: 50px auto;
-    width: 70%;
+#wrapper-reg {
+    flex-direction: row;
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    height: 100vh;
+}
+
+/* Box registration form (right) */
+
+#title-reg {
+    margin: 20px 0;
+    margin-left: 10%;
+}
+.box-reg-right {
+    width: 60%;
     grid-template-columns: 1fr;
+    float: right;
 }
 .form-registration {
     display: grid;
+    position: relative;
     margin: 0 auto;
-    width: 60%;
+    width: 80%;
     grid-gap: 20px;
     grid-template-columns: 1fr 1fr;
-    margin-top: 40px;
-    _box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    _border-radius: 9px;
 }
 .two-columns {
     grid-column: 1/3;
@@ -26,7 +37,6 @@
 .text-gray {
     color: gray;
 }
-
 .width-100 {
     width: 100%;
     padding: 0;
@@ -45,16 +55,79 @@ input, select {
 }
 .btn-submit {
     width: 180px;
-    background-color: rgb(87, 187, 128);
+    background-color: rgb(43, 177, 148);
     color: white;
     height: 40px;
-    border-radius: 8px;
-    transition: background-color 1s;
+    border-radius: 15px;
+    transition: background-color 1s;   
 }
 .btn-submit:hover {
     background-color: rgb(67, 145, 99);
     cursor: pointer;
 }
+
+/* Box with avatar (left) */
+
+#box-reg-left {
+    width: 30%;
+    text-align: center;
+    background-color: rgb(43, 177, 148);
+    box-shadow: 0 4px 8px 0 rgba(34, 27, 27, 0.2), 0 6px 20px 0 rgba(180, 179, 179, 0.19);
+}
+#avatar {
+    width: 220px;
+    height: 220px;
+    border-radius: 50%;
+    margin: 0 auto;
+    margin-top: 100px;
+    margin-bottom: 30px;
+}
+
+/* Image Upload */
+
+#btn-setAvatar {
+    background-color: rgb(31, 114, 238);
+    border: none;
+    transition: background-color 1s;
+    width: 100px;
+    height: 40px;
+    color: white;
+    border-radius: 15px;
+    margin: 0 auto;
+    display: inline-block;
+}
+#btn-upload {
+    width: 100px;
+    background-color: rgb(228, 105, 115);
+    border-radius: 15px;
+    border: none;
+    color: white;
+    height: 40px;
+    display: inline-block;
+    overflow: hidden;
+    cursor: pointer;
+    margin: 10px auto;
+    margin-right: 15px;
+    transition: background-color 1s;
+}
+#btn-setAvatar:hover {
+    background-color: rgb(75, 108, 136);
+    cursor: pointer;
+}
+#btn-upload:hover {
+    background-color: rgb(192, 87, 96);
+    cursor: pointer;
+}
+#span-input > input {
+    height: 100%;
+    width: 100;
+    opacity: 0;
+    cursor: pointer;
+}
+
+
+
+
 
 
 

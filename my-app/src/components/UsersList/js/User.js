@@ -1,21 +1,24 @@
 import '../css/User.css';
 import '../../../App.css'
+const BASE_URL_IMAGE = 'http://localhost:8080/images/';
+
 
 
 const User = ({user}) => {
 
     return (
         <div>
-            <div id="user-img" style={{"background": `url(${user.img}) no-repeat center`, "backgroundSize":"115%"}}>
-                {/* <img src={user.img} alt=""></img> */}
+            <div id="user-img" style={{"background": `url(${BASE_URL_IMAGE + user.img}) no-repeat center`, "backgroundSize":"cover"}}>
             </div>
             <div id="user-info">
                 <div id="user-mainInfo">
-                    <h4 className="user-name">{user.firstName}, {user.lastName}</h4>
-                    <h6 className="user-languages">Native language: </h6><h6 className="user-languages">{user.nativeLanguage}</h6><br/>
-                    <h6 className="user-languages">Practice language: </h6><h6 className="user-languages">{user.practiceLanguage}</h6>
+                    <h4 className="user-name">{user.firstName} {user.lastName}</h4>
+                    <p className="user-card-text">Native: </p><p className="user-card-text">{user.nativeLanguage}</p><p className="user-card-text"> | </p>
+                    <p className="user-card-text">Practice: </p><p className="user-card-text">{user.practiceLanguage}</p>
+                    <br/>
+                    <br/>
+                    <p className="user-card-text">{user.about}</p>
                 </div>
-                <p>{user.interests}</p>
             </div>
         </div>
     )

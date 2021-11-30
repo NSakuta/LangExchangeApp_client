@@ -1,0 +1,26 @@
+#user-fav-img {
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    box-shadow: 0 4px 8px 0 rgba(170, 164, 164, 0.2), 0 6px 20px 0 rgba(180, 179, 179, 0.19);
+    margin: 20px auto;
+}
+#user-fav-info {
+    width: 90%;
+    margin: 0 auto;
+    height: 150px;
+    overflow: hidden;
+}
+#user-fav-mainInfo {
+    text-align: center;
+    width: 100%;
+}
+.user-fav-name, .user-fav-card-text {
+    margin: 0;
+    padding: 0;
+}
+.user-fav-card-text {
+    display: inline;
+    color: gray;
+    font-size: 12px;
+}

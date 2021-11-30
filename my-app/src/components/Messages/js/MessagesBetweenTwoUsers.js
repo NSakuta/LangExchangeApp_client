@@ -2,28 +2,25 @@ import '../css/MessagesBetweenTwoUsers.css'
 import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { messagesSelector} from '../../../store/messageReducer/messagesReducer';
-import { useContext, useEffect } from 'react';
+import { useEffect } from 'react';
 import { userSelector } from '../../../store/userReducer/userReducer';
-import { currentUserSelector, setCurrentUserAction } from '../../../store/authReducer/authReducer'
 import { getAllUsersAction } from '../../../store/userReducer/userReducer';
 import { useForm } from 'react-cool-form';
 import { addNewMessageAction } from '../../../store/messageReducer/messagesReducer';
 import { findUserById } from '../../../store/userReducer/userReducer';
+import { useNavigate } from 'react-router';
+const BASE_URL_IMAGE = 'http://localhost:8080/images/';
 
-const MessagesFromOneUser = () => {
+const MessagesBetweenTwoUsers = () => {
 
     const dispatch = useDispatch();
-
-    // useEffect(() => {
-    //     dispatch(setCurrentUserAction())
-    // }, [dispatch])
+    const navigate = useNavigate();
 
     useEffect(() => {
         dispatch(getAllUsersAction())
     }, [dispatch])
 
     const messages = useSelector(messagesSelector);
-    // const currentUserId = useSelector(currentUserSelector);
 
     const currentUserId = JSON.parse(localStorage.getItem('USER_ID'));
     
@@ -32,7 +29,6 @@ const MessagesFromOneUser = () => {
     const users = useSelector(userSelector);
 
     const user = findUserById(users, id)
-    console.log('user: ', user)
 
     let allMessagedByTwoUsers = messages.filter(
         el => (el.sentBy === id && el.recipient === currentUserId)
@@ -60,43 +56,62 @@ const MessagesFromOneUser = () => {
                 <div className="wrapper-msg-left">
                     <div id="box-top-msgs">
                     {allMessagedByTwoUsers.map(el => {
+                        const fullDate = el.createdAt.split('T')[0]
+                        const fullTime = el.createdAt.split('T')[1]
+                        const date = fullDate.split('-')[2] + '.' + fullDate.split('-')[1]
+                        const time = fullTime.split(':')[0] + ':' + fullTime.split(':')[1]
+
                         if(el.sentBy === currentUserId) {
                             return (
                                     <div className="right">{el.text}
                                         <p id="sign">me</p>
+                                        <p className="dateAnDTimeRight">{date}   {time}</p>
                                     </div>
                                 )
                         } else {
                             return (
                                     <div className="left">
                                         {el.text}
+                                        <p className="dateAnDTimeLeft">{date}   {time}</p>
                                     </div>
                             )
                         }
                     })}
                 </div>
-                <div id="box-bottom-input">
-                <form ref={form}>
-                <p>Write your message</p>
-                <textarea id="inp-msg" name="text"></textarea>
-                <br/>
-                <button type="submit">Send</button>
-                </form>
-                    
-                </div>
-                </div>
-                <div className="wrapper-msg-right">
-                    <div className="x-center">
-                        <img id="box-avatar" src={user.img} alt="name"></img>
-                        <h4>{user.firstName}, {user.lastName}</h4>
-                        <p>{user.interests}</p>
+                    <div id="box-bottom-input">
+                        <form id="box-bottom-form" ref={form}>
+                            <div id="box-bottom-message">
+                                <textarea id="textarea-msg" name="text" placeholder="Write your message"></textarea>
+                                <br/>
+                            </div>
+                            <button id="btn-send" type="submit">Send</button>
+                        </form>
+                        
                     </div>
                 </div>
+                {users.length !== 0 && <div className="wrapper-msg-right">
+                <div id="box-right">
+                    <div id="box-right-top">
+                    <div id="box-right-img" style={{ "background": `url(${BASE_URL_IMAGE + user.img}) no-repeat center`, "backgroundSize": "cover" }}></div>
+                    </div>
+                    <div id="box-right-bottom">
+                        <div id="box-right-bottom-info">
+                            <h4 id="text-user-name">{user.firstName} {user.lastName}</h4>
+                            <p className="text-user" id="text-user-about">Some user´s information</p><br />
+                            <p className="text-user" id="text-user-learn">Learn: {user.practiceLanguage}</p>
+                            <p className="text-user" id="text-user-native">Native: {user.nativeLanguage}</p>
+                        </div>
+                        <div id="box-right-bottom-btn">
+                            <button className="right-bottom-btn" id="btn-view-profile" onClick={() => navigate(`/users/${user._id}`)}>view profile</button>                          
+                        </div>
+                    </div>
+                </div>
+                </div> }
         </div>
     )
 }
 
-export default MessagesFromOneUser;
+export default MessagesBetweenTwoUsers;
 
 
 

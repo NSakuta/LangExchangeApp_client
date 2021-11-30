@@ -1,11 +1,56 @@
+
 #menu-left {
     position: absolute;
     left: 0;
-    width: 20%;
+    width: 200px;
     height: 100vh;
-    background-color: rgba(231, 231, 231, 0.418);
+    background-color: rgba(151, 151, 151, 0.068);
 }
 .no-decoration{
     text-decoration: none;
 }
-
+.nav-left {
+    list-style: none;
+    padding: 0;
+}
+.nav-left-li {
+    margin: 10px;
+    color: rgb(117, 117, 117);
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 18px;
+    transition: 0.5s background-color;
+    width: 100px;
+}
+.nav-left-li:hover {
+    cursor: pointer;
+    background-color: rgba(151, 151, 151, 0.295);
+}
+.nav-left-li:active {
+    background-color: rgba(151, 151, 151, 0.295);
+}
+#svg-img {
+    width: 15px;
+    height: 15px;
+    margin-right: 10px;
+    opacity: 0.5;
+}
+#text-welcome {
+    display: inline-block;
+    /* background-color: rgb(43, 177, 148); */
+    padding: 20px;
+    margin-left: 37%;
+    margin-top: 100px;
+    text-align: center;
+    border-radius: 45px;
+    color: rgb(43, 177, 148); 
+    font-family: 'Dancing Script', cursive;
+    font-size: 35px;
+}
+#text-welcome p {
+    margin: 0;
+}
+#img-welcome {
+    border-radius: 90px;
+    width: 350px;
+}

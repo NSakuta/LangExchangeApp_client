@@ -36,6 +36,6 @@ export const login = async (data) => {
         const response = await client.post('/auth/signin', data);
         return response.data;
     } catch (err) {
-        console.log(err.message)
+        throw new Error(err.response.data.message)
     }
 }

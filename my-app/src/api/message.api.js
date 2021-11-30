@@ -5,7 +5,7 @@ export const getAllMessages = async () => {
         const response = await client.get('/messages');
         return response.data;
     } catch(err) {
-        console.log(err.message)
+        throw new Error(err.response.data.message)
     }
 };
 
@@ -15,6 +15,6 @@ export const addNewMessage = async (newMessage) => {
         console.log(response.data);
         return response.data;
     } catch(err) {
-        console.log(err.message)
+        throw new Error(err.response.data.message)
     }
 };

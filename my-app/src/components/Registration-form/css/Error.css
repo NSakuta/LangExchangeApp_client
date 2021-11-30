@@ -1,9 +1,9 @@
-.box {
-    margin: 0 auto;
+#box-error {
+    margin: 20px auto;
     background-color: rgba(231, 185, 186, 0.13);
     padding:10px;
     border: 1px solid rgb(240, 77, 77);
-    width: calc(100% - 15px);
+    width: 80%;
     height: 25px;
     border-radius:5px;
     text-align:center;

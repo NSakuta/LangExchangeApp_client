@@ -5,7 +5,7 @@ export const getAllUsers = async () => {
         const response = await client.get('/users');
         return response.data;
     } catch(err) {
-        console.log(err.message);
+        throw new Error(err.response.data.message)
     }
 };
 
@@ -14,7 +14,7 @@ export const addNewUser = async (newUser) => {
         const response = await client.post('/auth/signup', newUser);
         return response.data;
     } catch(err) {
-        console.log(err.message);
+        throw new Error(err.response.data.message)
     }
 };
 
@@ -23,7 +23,7 @@ export const getUserByid = async (id) => {
         const response = await client.get(`/users/${id}`);
         return response.data;
     }catch(err) {
-        console.log(err.message);
+        throw new Error(err.response.data.message)
     }
 };
 
@@ -32,6 +32,6 @@ export const updateUser = async (id, newValue) => {
         const response = await client.put(`/users/${id}`, newValue);
         return response.data;
     } catch(err) {
-        console.log(err.message);
+        throw new Error(err.response.data.message)
     }
 };

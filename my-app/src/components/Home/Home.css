@@ -1,0 +1,24 @@
+#home-bg {
+    width: 100%;
+    height: auto;
+}
+#home-wrapper {
+    width: 100%;
+    height: 100vh;
+    position: relative;
+
+}
+#home-text {
+    position: absolute;
+    left: 27%;
+    top: 110px;
+    background-color: rgba(43, 177, 148, 0.486);
+    padding: 30px;
+    border-radius: 30px;
+}
+#home-text-h1 {
+    color: rgb(35, 63, 122);
+    font-size: 80px;
+    font-family: 'Dancing Script', cursive;
+    margin: 0 auto;
+}
