@@ -22,8 +22,6 @@ const Favourites = () => {
     const currentUser = findUserById(users, currentUserId);
     const favouritesIds = currentUser.favourites;
     
-    console.log(users)
-
     function findUsersById() {
         let favourites = [];
         for(let i = 0; i < favouritesIds.length; i++) {
@@ -34,11 +32,10 @@ const Favourites = () => {
     }
 
     const favourites = findUsersById();
-    console.log('newUsers: ', favourites)
 
     return (
         <div>
-            <div id="wrapper-favourites">
+            {favourites.length === 0 ? <div></div> : <div id="wrapper-favourites">
                 {favourites.map(el => {
                         return (
                             <NavLink id="box-fav" key={el._id} to={`/users/${el._id}`}>
@@ -49,7 +46,7 @@ const Favourites = () => {
                         )      
                 })}
 
-            </div>
+            </div>}
         </div>
     )
 }

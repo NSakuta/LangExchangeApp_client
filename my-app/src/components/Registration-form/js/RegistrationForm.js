@@ -119,9 +119,8 @@ const RegistrationForm = () => {
     onSubmit: (values, { reset }) => {
       console.log("onSubmit: ", values)
       dispatch(addNewUserAction({ ...values, img: avatar }));
-      // if(!errByAddUser) {
-      //   navigate('/auth/login')
-      // }
+      reset()
+      navigate('/auth/login')
     }
   });
 

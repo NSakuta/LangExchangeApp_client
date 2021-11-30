@@ -7,7 +7,7 @@ const Home = () => {
         <div id="home-wrapper">
             <img id="home-bg" src={bg} alt="bg-home"></img>
             <div id="home-text">
-                <h1 id="home-text-h1">Speak with Us!</h1>
+                <h1 id="home-text-h1">Practice with Us!</h1>
             </div>
         </div>
     )

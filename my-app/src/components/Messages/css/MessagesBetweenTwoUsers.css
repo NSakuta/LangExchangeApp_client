@@ -24,10 +24,11 @@
     height: fit-content;
     background-color: rgba(210, 245, 245, 0.753);
     border-radius: 15px;
-    margin: 5px 5px;
+    margin: 10px;
     padding: 10px;
     float: left;
     display: block;
+    position: relative;
 }
 
 .right {
@@ -37,17 +38,31 @@
     background-color: rgba(184, 240, 176, 0.5);
     float: right;    
     border-radius: 15px;
-    margin: 5px 5px;
+    margin: 10px;
     padding: 10px;
     display: block;
     position: relative;
     padding-right: 30px;
 
 }
+.dateAnDTimeRight {
+    color: gray;
+    font-size: 10px;
+    position: absolute;
+    right: 10px;
+    bottom: -25px;
+}
+.dateAnDTimeLeft {
+    color: gray;
+    font-size: 10px;
+    position: absolute;
+    left: 10px;
+    bottom: -25px;
+}
 #sign {
     position: absolute;
     right: 5px;
-    bottom: 5px;
+    bottom: 0;
     color: rgb(179, 177, 177);
     font-size: 11px;
     padding: 3px;
@@ -184,6 +199,7 @@
 #box-bottom-form {
     position: relative;
 }
+
 
 
 

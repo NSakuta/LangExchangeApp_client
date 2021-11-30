@@ -56,18 +56,23 @@ const MessagesBetweenTwoUsers = () => {
                 <div className="wrapper-msg-left">
                     <div id="box-top-msgs">
                     {allMessagedByTwoUsers.map(el => {
+                        const fullDate = el.createdAt.split('T')[0]
+                        const fullTime = el.createdAt.split('T')[1]
+                        const date = fullDate.split('-')[2] + '.' + fullDate.split('-')[1]
+                        const time = fullTime.split(':')[0] + ':' + fullTime.split(':')[1]
+
                         if(el.sentBy === currentUserId) {
                             return (
-                                    <div className="right">{el.text}{el.createdAt}
-
+                                    <div className="right">{el.text}
                                         <p id="sign">me</p>
+                                        <p className="dateAnDTimeRight">{date}   {time}</p>
                                     </div>
                                 )
                         } else {
                             return (
                                     <div className="left">
                                         {el.text}
-                                        {el.createdAt}
+                                        <p className="dateAnDTimeLeft">{date}   {time}</p>
                                     </div>
                             )
                         }

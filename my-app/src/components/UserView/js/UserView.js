@@ -138,7 +138,7 @@ const UserView = () => {
                             <p className="profile-text-styled">{user.lastName}</p>
                         </div>
                         <div id="box-right-bdate" className="box-right-style">
-                            <p className="profile-text-styled">Birth date:</p>
+                            <p className="profile-text-styled">Age:</p>
                             <p className="profile-text-styled">{user.age}</p>
                         </div>
                         <div id="box-right-address" className="box-right-style">

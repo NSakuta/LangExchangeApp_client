@@ -42,7 +42,7 @@ export default function Header() {
                                 <NavLink className="nav-top-li" to={`/user/${currentUserId}/me`}>
                                     <div id="nav-top-me" style={{"background": `url(${BASE_URL_IMAGE + user.img}) no-repeat center`, "backgroundSize":"cover"}}></div>
                                 </NavLink>
-                            <li><NavLink className="nav-top-li" to='/users'>Find tandem</NavLink></li>
+                            <li><NavLink className="nav-top-li" to='/users'>Find a partner</NavLink></li>
                             <li><NavLink className="nav-top-li" to='/blog'>Blog</NavLink></li>
                         </ul>
                         <div className="text-end">
