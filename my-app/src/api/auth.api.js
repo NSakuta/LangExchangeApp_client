@@ -21,7 +21,7 @@ client.interceptors.request.use(
         console.log('config: ', config);
         if(!config.url.startsWith('/auth')) {
             config.headers = {
-                'Access-Token': localStorage.getItem('TOKEN') || ''
+                'x-access-token': localStorage.getItem('TOKEN') || ''
             }
         }
         return config

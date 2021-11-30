@@ -8,7 +8,7 @@ import { currentUserSelector, setCurrentUserAction } from '../../../store/authRe
 import { getAllUsersAction } from '../../../store/userReducer/userReducer';
 import { useForm } from 'react-cool-form';
 import { addNewMessageAction } from '../../../store/messageReducer/messagesReducer';
-import { AppContext } from '../../../App';
+import { findUserById } from '../../../store/userReducer/userReducer';
 
 const MessagesFromOneUser = () => {
 
@@ -22,7 +22,6 @@ const MessagesFromOneUser = () => {
         dispatch(getAllUsersAction())
     }, [dispatch])
 
-    const {findUserById} = useContext(AppContext);
     const messages = useSelector(messagesSelector);
     // const currentUserId = useSelector(currentUserSelector);
 

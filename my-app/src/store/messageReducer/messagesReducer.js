@@ -56,9 +56,23 @@ export const addNewMessageAction = (newMessage) => {
     }
 }
 
-// const getUserIdFromLocalStorage = () => {
-//     return JSON.parse(localStorage.getItem('USER_ID')) || []
-// }
+export const findReceivedMessagesByUserId = (id, array) => {
+    let receivedMessages = [];
+
+    if (id !== null) {
+        receivedMessages = array.filter(el => el.recipient === id);
+    } 
+    return receivedMessages;
+}
+
+export const findSentMessagesByUserId = (id, array) => {
+  let sentMessages = [];
+
+  if (id !== null) {
+      sentMessages = array.filter(el => el.sentBy === id);
+  }
+  return sentMessages;
+}
 
 
 

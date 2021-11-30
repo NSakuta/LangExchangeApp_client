@@ -1,0 +1,23 @@
+#wrapper-users {
+    display: flex;
+    width: 90%;
+    margin: 0 auto;
+}
+#wrapper {
+    width: 100%;
+    margin-top: 200px;
+}
+#box {
+    height: 250px;
+    width: calc(100% / 6);
+    margin: 0;
+    box-shadow: 0 4px 8px 0 rgba(146, 141, 141, 0.2), 0 6px 20px 0 rgba(180, 179, 179, 0.19);
+    height: fit-content;
+    margin: 10px;
+    border-radius: 10px;
+    text-decoration: none;
+}
+#box:hover {
+    background-color: rgba(146, 141, 141, 0.2);
+    cursor: pointer;
+}

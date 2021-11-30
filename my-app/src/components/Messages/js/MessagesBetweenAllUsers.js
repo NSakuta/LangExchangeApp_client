@@ -9,12 +9,13 @@ import { getAllUsersAction } from "../../../store/userReducer/userReducer";
 import Message from './Message';
 import { AppContext } from '../../../App';
 import { NavLink } from 'react-router-dom';
-
+import { getCurrentUserIdFromLocalStorage } from '../../../store/authReducer/authReducer';
+import { findUserById } from '../../../store/userReducer/userReducer';
+import { findReceivedMessagesByUserId, findSentMessagesByUserId } from '../../../store/messageReducer/messagesReducer';
 
 
 const MessagesPage = () => {
 
-    const {findReceivedMessagesByUserId, findSentMessagesByUserId, findUserById, getCurrentUserIdFromLocalStorage} = useContext(AppContext);
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -25,17 +26,11 @@ const MessagesPage = () => {
         dispatch(getAllUsersAction())
     }, [dispatch])
 
-    // useEffect(() => {
-    //     dispatch(setCurrentUserAction())
-    // }, [dispatch])
-
 
     const messages = useSelector(messagesSelector);
     // const currentUserId = useSelector(currentUserSelector);
     const currentUserId = getCurrentUserIdFromLocalStorage();
     const users = useSelector(userSelector);
-
-    console.log('currentUserId: ', currentUserId)
 
     let receivedMessages = findReceivedMessagesByUserId(currentUserId, messages);
     let sentMessages = findSentMessagesByUserId(currentUserId, messages);
@@ -58,7 +53,6 @@ const MessagesPage = () => {
             return el.sentBy
         }
     });
-
 
       const uniqueUsersId = usersId.filter((x, i, a) => a.indexOf(x) === i)
 
@@ -93,7 +87,7 @@ const MessagesPage = () => {
                     <div>
                         {uniqueUsers.map(el => {
                                 return (
-                                    <NavLink key={el._id} to={`/${currentUserId}/me/messages/${el._id}`}>
+                                    <NavLink key={el._id} to={`/user/${currentUserId}/me/messages/${el._id}`}>
                                     <Message key={el._id}
                                     user={el}
                                     users={users}

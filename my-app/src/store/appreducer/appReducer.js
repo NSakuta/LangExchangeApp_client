@@ -1,8 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { removeCurrentUser } from "../authReducer/authReducer";
 
 const initialState = {
     isLoading: false,
-    auth: false
+    isAuth: false
 }
 
 const appReducer = createSlice({
@@ -16,12 +17,10 @@ const appReducer = createSlice({
             state.isLoading = false
         },
         authSuccess: state => {
-            state.auth = localStorage.getItem('TOKEN') !== null
+            state.isAuth = localStorage.getItem('TOKEN') !== null
         },
-        logout: state => {
-            localStorage.removeItem('USER_ID');
-            localStorage.removeItem('TOKEN');
-            state.auth = false
+        logout: (state, {payload}) => {
+            state.isAuth = payload.isAuth
         }
     }
 });
@@ -29,6 +28,13 @@ const appReducer = createSlice({
 export default appReducer.reducer;
 export const {startLoading, stopLoading, authSuccess, logout} = appReducer.actions;
 export const appSelector = state => state.app.isLoading;
-export const authSelector = state => state.app.auth;
+export const authSelector = state => state.app.isAuth;
 
-
+export const logoutAction = () => {
+    return dispatch => {
+        localStorage.removeItem('USER_ID');
+        localStorage.removeItem('TOKEN');
+        dispatch(removeCurrentUser());
+        dispatch(logout({isAuth: false}))
+    }
+}
