@@ -117,7 +117,7 @@ const UserView = () => {
                         </div>
                         : 
                         <div id="box-left-bottom-btns">
-                            <p className="text-user">Please login or register to contact a person</p>
+                            <p className="text-user p-bottom">Please login or register to contact a person</p>
                             <button onClick={() => navigate('/auth/login')} className="left-bottom-btns" id="btn-contact">login</button>
                         </div>
                         }

@@ -120,7 +120,7 @@ const RegistrationForm = () => {
       console.log("onSubmit: ", values)
       dispatch(addNewUserAction({ ...values, img: avatar }));
       reset()
-      navigate('/auth/login')
+      //navigate('/auth/login')
     }
   });
 

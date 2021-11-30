@@ -51,7 +51,7 @@ export default function Header() {
                     :
                     <>
                         <ul className="nav-top">
-                            <li><NavLink className="nav-top-li" to='/users'>Find tandem</NavLink></li>
+                            <li><NavLink className="nav-top-li" to='/users'>Find a partner</NavLink></li>
                             <li><NavLink className="nav-top-li" to='/blog'>Blog</NavLink></li>
                         </ul>
                         <div className="text-end">

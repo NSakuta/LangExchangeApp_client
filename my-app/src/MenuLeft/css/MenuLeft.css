@@ -1,3 +1,4 @@
+
 #menu-left {
     position: absolute;
     left: 0;
@@ -33,4 +34,23 @@
     height: 15px;
     margin-right: 10px;
     opacity: 0.5;
+}
+#text-welcome {
+    display: inline-block;
+    /* background-color: rgb(43, 177, 148); */
+    padding: 20px;
+    margin-left: 37%;
+    margin-top: 100px;
+    text-align: center;
+    border-radius: 45px;
+    color: rgb(43, 177, 148); 
+    font-family: 'Dancing Script', cursive;
+    font-size: 35px;
+}
+#text-welcome p {
+    margin: 0;
+}
+#img-welcome {
+    border-radius: 90px;
+    width: 350px;
 }

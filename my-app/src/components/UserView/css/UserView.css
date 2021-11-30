@@ -41,7 +41,7 @@
     position: absolute;
     background: white;
     top: 25%;
-    left: 15%;
+    left: 17%;
     width: 200px;
     height: 200px;
     border-radius: 50%;
@@ -59,6 +59,9 @@
     font-size: 12px;
     display: inline-block;
     margin: 5px;
+}
+.p-bottom {
+    padding-bottom: 10px;
 }
 #text-user-learn {
     margin-right: 20px;
