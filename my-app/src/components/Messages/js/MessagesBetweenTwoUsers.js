@@ -1,7 +1,6 @@
 import '../css/MessagesBetweenTwoUsers.css'
 import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { messagesSelector} from '../../../store/messageReducer/messagesReducer';
 import { useEffect } from 'react';
 import { userSelector } from '../../../store/userReducer/userReducer';
 import { getAllUsersAction } from '../../../store/userReducer/userReducer';
@@ -9,31 +8,41 @@ import { useForm } from 'react-cool-form';
 import { addNewMessageAction } from '../../../store/messageReducer/messagesReducer';
 import { findUserById } from '../../../store/userReducer/userReducer';
 import { useNavigate } from 'react-router';
+import Chat from './Chat';
+import { getAllMessagesAction } from '../../../store/messageReducer/messagesReducer';
+import { messagesSelector } from '../../../store/messageReducer/messagesReducer';
 const BASE_URL_IMAGE = 'http://localhost:8080/images/';
 
 const MessagesBetweenTwoUsers = () => {
 
+    const users = useSelector(userSelector);
     const dispatch = useDispatch();
-    const navigate = useNavigate();
 
     useEffect(() => {
-        dispatch(getAllUsersAction())
+            dispatch(getAllUsersAction())
     }, [dispatch])
 
     const messages = useSelector(messagesSelector);
 
+    useEffect(() => {
+        let isMounted = true
+        const intervalId = setInterval(() => { 
+            dispatch(getAllMessagesAction())
+        }, 5000)
+        
+        return () => {
+            clearInterval(intervalId); 
+            isMounted = false // the component is no longer mounted
+        }
+     
+    })
+
+
+    const navigate = useNavigate();
     const currentUserId = JSON.parse(localStorage.getItem('USER_ID'));
-    
     const { id } = useParams(); 
-
-    const users = useSelector(userSelector);
-
     const user = findUserById(users, id)
 
-    let allMessagedByTwoUsers = messages.filter(
-        el => (el.sentBy === id && el.recipient === currentUserId)
-            || (el.sentBy === currentUserId && el.recipient === id)
-    );
 
     const { form } = useForm({
         defaultValues: { text: ''},
@@ -47,37 +56,17 @@ const MessagesBetweenTwoUsers = () => {
           
     // console.log('messages: ', messages)
     // console.log('allMessagedByTwoUsers:', allMessagedByTwoUsers);
-
     // console.log('sentBy: ', id)
     // console.log('currentUser: ', currentUserId)
+
+    console.log('MessagesBetweenTwoUsers: ', messages)
 
     return (
         <div className="wrapper-msg">
                 <div className="wrapper-msg-left">
                     <div id="box-top-msgs">
-                    {allMessagedByTwoUsers.map(el => {
-                        const fullDate = el.createdAt.split('T')[0]
-                        const fullTime = el.createdAt.split('T')[1]
-                        const date = fullDate.split('-')[2] + '.' + fullDate.split('-')[1]
-                        const time = fullTime.split(':')[0] + ':' + fullTime.split(':')[1]
-
-                        if(el.sentBy === currentUserId) {
-                            return (
-                                    <div className="right">{el.text}
-                                        <p id="sign">me</p>
-                                        <p className="dateAnDTimeRight">{date}   {time}</p>
-                                    </div>
-                                )
-                        } else {
-                            return (
-                                    <div className="left">
-                                        {el.text}
-                                        <p className="dateAnDTimeLeft">{date}   {time}</p>
-                                    </div>
-                            )
-                        }
-                    })}
-                </div>
+                        {messages.length !== 0 && <Chat messages={messages} currentUserId={currentUserId} id={id}></Chat>}
+                    </div>
                     <div id="box-bottom-input">
                         <form id="box-bottom-form" ref={form}>
                             <div id="box-bottom-message">
