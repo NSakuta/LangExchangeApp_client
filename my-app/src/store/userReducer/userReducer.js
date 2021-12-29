@@ -17,10 +17,6 @@ const userReducer = createSlice({
         addUser: (state, {payload}) => {
             state.users.push(payload)
         },
-        // addNewValueToUser: (state, {payload}) => {
-        //     const index = state.users.findIndex(el => el._id === payload.id)
-        //     state.users[index] = payload.newValue
-        // },
         setError: (state, {payload}) => {
             state.error = payload.error
         }
@@ -70,7 +66,6 @@ export const addFavouritesAction = (id, newValue) => {
         dispatch(startLoading());
         try {
             await updateUser(id, {favourites: newValue});
-            // dispatch(addNewValueToUser({id, newValue}))
         } catch(err) {
             dispatch(setError({error: err.message}))
         } finally {
@@ -84,7 +79,6 @@ export const updateUserAction = (id, newValue) => {
         dispatch(startLoading());
         try {
             await updateUser(id, newValue);
-            // updateUsers();
         } catch(err) {
             dispatch(setError({error: err.message}))
         } finally {

@@ -1,11 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { addNewMessage, getAllMessages } from "../../api/message.api";
-import { startLoading, stopLoading } from "../appreducer/appReducer";
 
 
 const initialState = {
     messages: []
-   
 }
 
 

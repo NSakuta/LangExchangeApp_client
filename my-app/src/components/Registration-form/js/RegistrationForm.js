@@ -9,22 +9,18 @@ import { useDispatch } from 'react-redux';
 import '../css/RegistrationForm.css';
 import { useSelector } from 'react-redux';
 import Error from './Error';
-import React, { useEffect } from 'react';
+import React from 'react';
 import client from '../../../api/api';
 import defaultAvatar from '../../../img-svg/default-image.jpg';
-import { useNavigate } from 'react-router';
+//import { useNavigate } from 'react-router';
 
 
 const RegistrationForm = () => {
 
   const [img, setImg] = React.useState(null);
   const [avatar, setAvatar] = React.useState(null);
-  const navigate = useNavigate()
+  //const navigate = useNavigate()
   const dispatch = useDispatch();
-
-  // useEffect(() => {
-  //   dispatch(addNewUserAction())
-  // }, [dispatch])
 
   const sendFile = React.useCallback(async () => {
     try {
@@ -169,7 +165,6 @@ const RegistrationForm = () => {
               name="lastName"
               error={errors.lastName}
             />
-
             <Input
               id="email"
               type="email"
@@ -177,7 +172,6 @@ const RegistrationForm = () => {
               name="email"
               className="two-columns"
               error={errors.email}
-
             />
             <Input
               id="password"
@@ -199,7 +193,6 @@ const RegistrationForm = () => {
               label="Age"
               name="age"
               error={errors.age}
-
             />
             <Input
               id="zip"
@@ -212,7 +205,6 @@ const RegistrationForm = () => {
               name="nativeLanguage"
               options={languages}
               error={errors.nativeLanguage}
-
             />
             <Select
               label="Language you want to practice"
@@ -220,7 +212,6 @@ const RegistrationForm = () => {
               options={languages}
               error={errors.practiceLanguage}
             />
-
             <Input
               id="about"
               type="text"

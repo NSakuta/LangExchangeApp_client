@@ -8,9 +8,7 @@ function Textarea(props) {
             <textarea className="width-100 reg-textarea" id={id} {...rest} />
         </div>
         <div className="lb-reg"><label htmlFor={id}>{label}</label></div>
-      
-
-      {error && <p>{error}</p>}
+        {error && <p>{error}</p>}
       {/* <ErrorMessage name={name} /> */}
     </div>
   )

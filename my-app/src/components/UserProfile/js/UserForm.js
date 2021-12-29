@@ -209,7 +209,7 @@ const UserForm = ({currentUser}) => {
                     {avatar ? 
                             <div id="profile-avatar" style={{"background": `url(http://localhost:8080/images/${avatar}) no-repeat center`, "backgroundSize": "cover" }} alt="avatar"></div>
                             : 
-                            <div id="profile-avatar" style={{"background": `url(http://localhost:8080/images/${currentUser.img}) no-repeat center`, "backgroundSize": "100%" }} alt="defaultAvatar"></div>
+                            <div id="profile-avatar" style={{"background": `url(http://localhost:8080/images/${currentUser.img}) no-repeat center`, "backgroundSize": "cover" }} alt="defaultAvatar"></div>
                         }    
                   
                   <input id="upload" type="file" style={{"display": "none"}} onChange={e => setImg(e.target.files[0])}></input>
