@@ -45,7 +45,6 @@ const UserView = () => {
         }
     })  
 
-
     /////////////////////////////////////Modal 
 
     const customStyles = {

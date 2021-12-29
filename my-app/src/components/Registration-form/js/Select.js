@@ -21,8 +21,7 @@ function Select(props) {
                         {option.key}
                         </option>
                     )
-                }
-            
+                }         
             })}
             </select>
         </div>

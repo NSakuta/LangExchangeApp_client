@@ -11,6 +11,7 @@ import { useNavigate } from 'react-router';
 import Chat from './Chat';
 import { getAllMessagesAction } from '../../../store/messageReducer/messagesReducer';
 import { messagesSelector } from '../../../store/messageReducer/messagesReducer';
+import { getCurrentUserIdFromLocalStorage } from '../../../store/authReducer/authReducer';
 const BASE_URL_IMAGE = 'http://localhost:8080/images/';
 
 const MessagesBetweenTwoUsers = () => {
@@ -36,10 +37,10 @@ const MessagesBetweenTwoUsers = () => {
         }
      
     })
-
-
+    
     const navigate = useNavigate();
-    const currentUserId = JSON.parse(localStorage.getItem('USER_ID'));
+    const currentUserId = getCurrentUserIdFromLocalStorage();
+
     const { id } = useParams(); 
     const user = findUserById(users, id)
 
@@ -58,8 +59,7 @@ const MessagesBetweenTwoUsers = () => {
     // console.log('allMessagedByTwoUsers:', allMessagedByTwoUsers);
     // console.log('sentBy: ', id)
     // console.log('currentUser: ', currentUserId)
-
-    console.log('MessagesBetweenTwoUsers: ', messages)
+    //console.log('MessagesBetweenTwoUsers: ', messages)
 
     return (
         <div className="wrapper-msg">
