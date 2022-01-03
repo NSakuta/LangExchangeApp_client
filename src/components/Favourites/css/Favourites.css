@@ -1,7 +1,6 @@
 #wrapper-favourites {
     display: flex;
     flex-direction: row;
-    margin-left: 20%;
     flex-wrap: wrap;
 }
 #box-fav {
@@ -13,4 +12,11 @@
     margin: 10px;
     border-radius: 10px;
     text-decoration: none;
+}
+.info-box {
+    margin: 250px auto;
+    width: 200px;
+}
+.info-box p {
+    margin: 0;
 }

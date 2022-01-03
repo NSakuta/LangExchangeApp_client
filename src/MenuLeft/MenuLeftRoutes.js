@@ -8,18 +8,18 @@ import './css/MenuLeft.css'
 import { userSelector } from '../store/userReducer/userReducer';
 import { useSelector } from 'react-redux';
 import Loader from '../components/Loader/Loader';
-import { loaderSelector } from '../store/appreducer/appReducer';
+import UserHomePage from '../components/UserHomePage/UserHomePage';
 
 const MenuLeftRoutes = () => {
 
     const users = useSelector(userSelector)
-    const isLoading = useSelector(loaderSelector)
 
     return (
-        <div>
+        <div className="container-menubar-left">
             <MenuLeft></MenuLeft>
             {users.length === 0 && <Loader></Loader>}
             <Routes>
+                <Route path="homepage" element={<UserHomePage></UserHomePage>}></Route>
                 <Route path='profile' element={<UserProfile></UserProfile>}></Route>
                 <Route path='messages/*' element={<MessagesBetweenAllUsers></MessagesBetweenAllUsers>}></Route>
                 <Route path='messages/:id/*' element={<MessagesBetweenTwoUsers></MessagesBetweenTwoUsers>}></Route>

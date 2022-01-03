@@ -12,6 +12,7 @@ import Modal from 'react-modal';
 import { useForm } from 'react-cool-form';
 import { addNewMessageAction } from '../../../store/messageReducer/messagesReducer';
 import { authSelector } from '../../../store/appreducer/appReducer';
+import Loader from '../../Loader/Loader'
 
 
 const UserView = () => {
@@ -75,19 +76,21 @@ const UserView = () => {
         let favourites = Object.assign([], currentUser.favourites)
         let isDouble = false;
         isDouble = favourites.includes(user._id)
-        console.log('isDouble:', isDouble)
         if(!isDouble) {
             favourites.push(user._id)
             dispatch(addFavouritesAction(currentUserId, favourites))
+            setTimeout(() => {
+                refreshPage()
+            }, 1000)
         }
     }
 
     return (
         <>
-            {allUsers.length !== 0 && <div id="wrapper-userView">
+            {allUsers.length === 0 ? <Loader></Loader> : <div id="wrapper-userView">
                 <div className="box" id="box-left">
                     <div id="box-left-top"></div>
-                    <div id="box-left-img" style={{ "background": `url(${user.img}) no-repeat center`, "backgroundSize": "100%" }}></div>
+                    <div id="box-left-img" style={{ "background": `url(${user.img}) no-repeat center`, "backgroundSize": "cover" }}></div>
                     <div id="box-left-bottom">
                         <div id="box-left-bottom-info">
                             <h4 id="text-user-name">{user.firstName} {user.lastName}</h4>
@@ -160,6 +163,10 @@ const UserView = () => {
 }
 
 export default UserView;
+
+const refreshPage = () => {
+    window.location.reload(false)
+}
 
 
 

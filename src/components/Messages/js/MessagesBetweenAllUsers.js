@@ -78,8 +78,8 @@ const MessagesPage = () => {
 
     return (
         <div>
-            <div className="wrapper-allUsers">
-                <div className="allUsers">
+            <div className="container-messages">
+                <div className="allUsers-messages">
                     {messages.length === 0 ? <div></div> : users.length === 0 ? <div></div> : 
                     <div>
                         {uniqueUsers.map(el => {

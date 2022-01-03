@@ -1,11 +1,10 @@
 import '../css/Favourite.css';
-const BASE_URL_IMAGE = 'http://localhost:8080/images/';
 
 
 const Favourite = ({user}) => {
     return (
         <div id="user-fav-box">
-            <div id="user-fav-img" style={{"background": `url(${BASE_URL_IMAGE + user.img}) no-repeat center`, "backgroundSize":"cover"}}>
+            <div id="user-fav-img" style={{"background": `url(${user.img}) no-repeat center`, "backgroundSize":"cover"}}>
             </div>
             <div id="user-fav-info">
                 <div id="user-fav-mainInfo">

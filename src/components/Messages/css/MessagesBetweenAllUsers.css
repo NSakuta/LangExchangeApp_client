@@ -8,18 +8,16 @@
     margin-left: 20%;
 }
 
-.allUsers {
-    width: 60%;
+.allUsers-messages {
     height: fit-content;
     padding: 20px;
 }
 #box-msg {
-        height: 150px;
-        width: 30%;
-        margin: 0;
-        box-shadow: 0 4px 8px 0 rgba(184, 182, 182, 0.2), 0 3px 3px 0 rgba(202, 201, 201, 0.19);
-        margin: 10px;
-        border-radius: 10px;
-        text-decoration: none;
-    
+    height: 150px;
+    width: 30%;
+    margin: 0;
+    box-shadow: 0 4px 8px 0 rgba(184, 182, 182, 0.2), 0 3px 3px 0 rgba(202, 201, 201, 0.19);
+    margin: 10px;
+    border-radius: 10px;
+    text-decoration: none;
 }

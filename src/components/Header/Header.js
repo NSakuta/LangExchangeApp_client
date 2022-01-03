@@ -39,7 +39,7 @@ export default function Header() {
                 {users.length === 0 ? <div></div> : auth ? 
                     <>
                         <ul className="nav-top">
-                                <NavLink className="nav-top-li" to={`/user/${currentUserId}/me`}>
+                                <NavLink className="nav-top-li" to={`/user/${currentUserId}/me/homepage`}>
                                     <div id="nav-top-me" style={{"background": `url(${user.img}) no-repeat center`, "backgroundSize":"cover"}}></div>
                                 </NavLink>
                             <li><NavLink className="nav-top-li" to='/users'>Find a partner</NavLink></li>
