@@ -8,6 +8,8 @@ import Search from "./Search";
 import { getCurrentUserIdFromLocalStorage } from "../../../store/authReducer/authReducer";
 import User from "./User";
 import { NavLink } from "react-router-dom";
+import { loaderSelector } from "../../../store/appreducer/appReducer";
+import Loader from "../../Loader/Loader";
 
 
 const UsersListAfterFilter = () => {
@@ -15,7 +17,7 @@ const UsersListAfterFilter = () => {
     const { native, practice } = useParams();
     const dispatch = useDispatch();
     const currentUserId = getCurrentUserIdFromLocalStorage();
-
+    const isLoading = useSelector(loaderSelector)
 
     useEffect(() => {
         dispatch(getAllUsersAction())
@@ -33,6 +35,8 @@ const UsersListAfterFilter = () => {
 
     return (
         <div>
+            {isLoading ? <Loader></Loader> :
+            <>
             <Search/>
             <div id="wrapper-users">
                 {usersAfterFilterByTwolanguages.map(el => {
@@ -47,6 +51,9 @@ const UsersListAfterFilter = () => {
                         }
                     })} 
             </div>
+            </>
+            }
+            
         </div>
     )
 }

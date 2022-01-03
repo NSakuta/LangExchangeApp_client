@@ -12,7 +12,6 @@ import Modal from 'react-modal';
 import { useForm } from 'react-cool-form';
 import { addNewMessageAction } from '../../../store/messageReducer/messagesReducer';
 import { authSelector } from '../../../store/appreducer/appReducer';
-const BASE_URL_IMAGE = 'http://localhost:8080/images/';
 
 
 const UserView = () => {
@@ -88,7 +87,7 @@ const UserView = () => {
             {allUsers.length !== 0 && <div id="wrapper-userView">
                 <div className="box" id="box-left">
                     <div id="box-left-top"></div>
-                    <div id="box-left-img" style={{ "background": `url(${BASE_URL_IMAGE + user.img}) no-repeat center`, "backgroundSize": "cover" }}></div>
+                    <div id="box-left-img" style={{ "background": `url(${user.img}) no-repeat center`, "backgroundSize": "100%" }}></div>
                     <div id="box-left-bottom">
                         <div id="box-left-bottom-info">
                             <h4 id="text-user-name">{user.firstName} {user.lastName}</h4>

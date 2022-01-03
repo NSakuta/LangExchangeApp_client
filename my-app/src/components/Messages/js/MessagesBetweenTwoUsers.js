@@ -12,7 +12,6 @@ import Chat from './Chat';
 import { getAllMessagesAction } from '../../../store/messageReducer/messagesReducer';
 import { messagesSelector } from '../../../store/messageReducer/messagesReducer';
 import { getCurrentUserIdFromLocalStorage } from '../../../store/authReducer/authReducer';
-const BASE_URL_IMAGE = 'http://localhost:8080/images/';
 
 const MessagesBetweenTwoUsers = () => {
 
@@ -81,7 +80,7 @@ const MessagesBetweenTwoUsers = () => {
                 {users.length !== 0 && <div className="wrapper-msg-right">
                 <div id="box-right">
                     <div id="box-right-top">
-                    <div id="box-right-img" style={{ "background": `url(${BASE_URL_IMAGE + user.img}) no-repeat center`, "backgroundSize": "cover" }}></div>
+                    <div id="box-right-img" style={{ "background": `url(${user.img}) no-repeat center`, "backgroundSize": "cover" }}></div>
                     </div>
                     <div id="box-right-bottom">
                         <div id="box-right-bottom-info">

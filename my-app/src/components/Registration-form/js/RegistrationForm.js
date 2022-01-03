@@ -12,14 +12,14 @@ import Error from './Error';
 import React from 'react';
 import client from '../../../api/api';
 import defaultAvatar from '../../../img-svg/default-image.jpg';
-//import { useNavigate } from 'react-router';
+import { useNavigate } from 'react-router-dom';
 
 
 const RegistrationForm = () => {
 
   const [img, setImg] = React.useState(null);
   const [avatar, setAvatar] = React.useState(null);
-  //const navigate = useNavigate()
+  const navigate = useNavigate()
   const dispatch = useDispatch();
 
   const sendFile = React.useCallback(async () => {
@@ -35,7 +35,7 @@ const RegistrationForm = () => {
       })
         .then(res => {
           console.log('res', res)
-          return setAvatar(res.data.filename)
+          return setAvatar(res.data.location)
         })
 
     } catch (err) {
@@ -116,7 +116,7 @@ const RegistrationForm = () => {
       console.log("onSubmit: ", values)
       dispatch(addNewUserAction({ ...values, img: avatar }));
       reset()
-      //navigate('/auth/login')
+      navigate('/auth/login')
     }
   });
 
@@ -129,7 +129,7 @@ const RegistrationForm = () => {
         <div id="box-reg-left">
           <div>
             {avatar ?
-              <div id="avatar" style={{ "background": `url(http://localhost:8080/images/${avatar}) no-repeat center`, "backgroundSize": "cover" }} alt="avatar"></div>
+              <div id="avatar" style={{ "background": `url(${avatar}) no-repeat center`, "backgroundSize": "cover" }} alt="avatar"></div>
               :
               <div id="avatar" style={{ "background": `url(${defaultAvatar}) no-repeat center`, "backgroundSize": "100%" }} alt="defaultAvatar"></div>
             }

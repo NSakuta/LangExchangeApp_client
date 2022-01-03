@@ -3,7 +3,7 @@ import '../css/Login.css'
 import { errorAuthSelector, getCurrentUserIdFromLocalStorage, loginAction, resetErrorAction } from '../../../store/authReducer/authReducer';
 import { useForm } from 'react-cool-form';
 import { useDispatch, useSelector } from 'react-redux';
-import { authSelector, isAuthTrue } from '../../../store/appreducer/appReducer';
+import { authSelector } from '../../../store/appreducer/appReducer';
 import { Navigate } from 'react-router-dom';
 import ErrorByLogin from './ErrorByLogin';
 
@@ -13,7 +13,7 @@ const Login = () => {
     const auth = useSelector(authSelector);
     const currentUserId = getCurrentUserIdFromLocalStorage();
     const errByLogin = useSelector(errorAuthSelector);
-    
+
     const initialValues = {
         email: '',
         password: ''

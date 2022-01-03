@@ -5,6 +5,7 @@ import { addNewUser, getAllUsers, updateUser } from '../../api/user.api';
 const initialState = {
     users: [],
     error: null,
+    isUpdated: false
 };
 
 const userReducer = createSlice({
@@ -19,14 +20,18 @@ const userReducer = createSlice({
         },
         setError: (state, {payload}) => {
             state.error = payload.error
+        },
+        setIsUpdated: (state, {payload}) => {
+            state.isUpdated = payload.isUpdated
         }
     }
 })
 
 export default userReducer.reducer;
-export const {setUsers, addUser, addNewValueToUser, setError} = userReducer.actions;
+export const {setUsers, addUser, addNewValueToUser, setError, setIsUpdated} = userReducer.actions;
 export const userSelector = state => state.user.users;
 export const errorUserSelector = state => state.user.error;
+export const isUpdatedSelector = state => state.user.isUpdated
 
 export const getAllUsersAction = () => {
     return async dispatch => {
@@ -77,12 +82,14 @@ export const updateUserAction = (id, newValue) => {
     return async dispatch => {
         dispatch(setError({error: null}))
         dispatch(startLoading());
+        dispatch(setIsUpdated({isUpdated: false}))
         try {
             await updateUser(id, newValue);
         } catch(err) {
             dispatch(setError({error: err.message}))
         } finally {
             dispatch(stopLoading())
+            dispatch(setIsUpdated({isUpdated: true}))
         }
     }
 }

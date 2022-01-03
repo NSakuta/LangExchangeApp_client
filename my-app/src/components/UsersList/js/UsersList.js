@@ -6,12 +6,15 @@ import { getAllUsersAction, userSelector } from "../../../store/userReducer/user
 import User from "./User";
 import { NavLink } from 'react-router-dom';
 import Search from './Search';
+import Loader from '../../Loader/Loader';
+import { loaderSelector } from '../../../store/appreducer/appReducer';
 
 
 const Users = () => {
     
     const currentUserId = getCurrentUserIdFromLocalStorage();
     const dispatch = useDispatch();
+    const isLoading = useSelector(loaderSelector)
 
     console.log(currentUserId);
 
@@ -24,8 +27,10 @@ const Users = () => {
 
     return (
         <div id="wrapper">
+            {isLoading ? <Loader></Loader> :  
+            <>
             <Search/>
-            <div id="wrapper-users">
+                <div id="wrapper-users">
                 {users.map(el => {
                     if(currentUserId !== el._id) {
                         return (
@@ -36,7 +41,8 @@ const Users = () => {
                             )
                         }
                     })} 
-            </div>
+            </div></>}
+            
         </div>
     )
 }

@@ -1,6 +1,7 @@
 import './Loader.css'
 
-const Loader = () => {
+const Loader = (props) => {
+
     return (
         <div id="wrapper-loader">
             <div id="box-loader">

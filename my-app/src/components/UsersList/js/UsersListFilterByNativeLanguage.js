@@ -8,6 +8,8 @@ import Search from "./Search";
 import { getCurrentUserIdFromLocalStorage } from "../../../store/authReducer/authReducer";
 import { NavLink } from "react-router-dom";
 import User from "./User";
+import { loaderSelector } from "../../../store/appreducer/appReducer";
+import Loader from "../../Loader/Loader";
 
 
 const UsersListFilterByNativeLanguage = () => {
@@ -15,6 +17,7 @@ const UsersListFilterByNativeLanguage = () => {
     const { native } = useParams();
     const dispatch = useDispatch();
     const currentUserId = getCurrentUserIdFromLocalStorage();
+    const isLoading = useSelector(loaderSelector)
 
 
     useEffect(() => {
@@ -28,20 +31,25 @@ const UsersListFilterByNativeLanguage = () => {
 
     return (
         <div>
-            <Search/>
-            <div id="wrapper-users">
-                {usersAfterFilter.map(el => {
-                    if(currentUserId !== el._id) {
-                        return (
-                            <NavLink id="box" key={el._id} to={`/users/${el._id}`}>
-                                <User key={el._id}
-                                    user={el}>                               
-                                </User>
-                            </NavLink>
-                            )
-                        }
-                    })} 
-            </div>
+            {isLoading ? <Loader></Loader> :
+            <>
+                <Search/>
+                <div id="wrapper-users">
+                    {usersAfterFilter.map(el => {
+                        if(currentUserId !== el._id) {
+                            return (
+                                <NavLink id="box" key={el._id} to={`/users/${el._id}`}>
+                                    <User key={el._id}
+                                        user={el}>                               
+                                    </User>
+                                </NavLink>
+                                )
+                            }
+                        })} 
+                </div> 
+            </>
+            }
+            
         </div>
     )
 }

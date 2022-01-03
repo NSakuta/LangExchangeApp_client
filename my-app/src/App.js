@@ -3,7 +3,7 @@ import Header from './components/Header/Header';
 import {Route, Routes } from 'react-router-dom';
 import RegistrationForm from './components/Registration-form/js/RegistrationForm';
 import {useDispatch, useSelector } from 'react-redux';
-import { authSelector, authSuccess } from './store/appreducer/appReducer';
+import { authSuccess } from './store/appreducer/appReducer';
 import Login from './components/Login/js/Login';
 import Home from './components/Home/Home';
 import Users from './components/UsersList/js/UsersList';
@@ -22,15 +22,16 @@ function App() {
 const isLoading = useSelector(loaderSelector);
 const dispatch = useDispatch();
 
+
 dispatch(authSuccess())
 
 
 console.log('isloading: ', isLoading)
 
   return (
+    
     <div>
-      <Header/>
-      {isLoading ? <Loader></Loader> : <></>}
+      <Header></Header>
       <Routes>
         <Route path='/' element={<Home></Home>}></Route>
         <Route path='auth/login' element={<Login/>} />

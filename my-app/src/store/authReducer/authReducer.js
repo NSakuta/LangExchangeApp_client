@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit"
-import { authSuccess, signin, startLoading, stopLoading } from "../appreducer/appReducer";
+import { authSuccess, startLoading, stopLoading } from "../appreducer/appReducer";
 import { login } from "../../api/auth.api";
 
 const initialState = {

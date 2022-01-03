@@ -1,18 +1,19 @@
 import * as Yup from 'yup';
 import { set, useForm } from 'react-cool-form';
+import React from 'react';
 import '../css/UserProfile.css'
 import Input from '../../Registration-form/js/Input';
 import Select from '../../Registration-form/js/Select';
 import RadioButtons from '../../Registration-form/js/RadioButtons';
 import Textarea from '../../Registration-form/js/Textarea';
-import React from 'react';
 import client from '../../../api/api';
-import { useDispatch } from 'react-redux';
-import { updateUserAction } from '../../../store/userReducer/userReducer';
+import { useDispatch, useSelector } from 'react-redux';
+import { isUpdatedSelector, updateUserAction } from '../../../store/userReducer/userReducer';
 
 const UserForm = ({currentUser}) => {
 
     const dispatch = useDispatch();
+    const isUpdated = useSelector(isUpdatedSelector)
 
     const [img, setImg] = React.useState(null);
     const [avatar, setAvatar] = React.useState(null);
@@ -30,7 +31,7 @@ const UserForm = ({currentUser}) => {
             })
                 .then(res => {
                     console.log('res', res)
-                    return setAvatar(res.data.filename)
+                    return setAvatar(res.data.location)
                 })
 
         } catch (err) {
@@ -102,10 +103,17 @@ const UserForm = ({currentUser}) => {
         validate: validateWithYup(validationSchema),
         onSubmit: (values) => {
             console.log("onSubmit: ", values)
+            console.log('isUpdated: ', isUpdated)
             if(img) {
                 dispatch(updateUserAction(currentUser._id, {...values, img: avatar}));
+                setTimeout(() => {
+                    refreshPage()
+                }, 1000)
             } else {
                 dispatch(updateUserAction(currentUser._id, values));
+                setTimeout(() => {
+                    refreshPage()
+                }, 1000)
             }
         }
     });
@@ -205,21 +213,23 @@ const UserForm = ({currentUser}) => {
                 </div>
             </div>
             <div id="box-profile-avatar">
-                
-                    {avatar ? 
-                            <div id="profile-avatar" style={{"background": `url(http://localhost:8080/images/${avatar}) no-repeat center`, "backgroundSize": "cover" }} alt="avatar"></div>
-                            : 
-                            <div id="profile-avatar" style={{"background": `url(http://localhost:8080/images/${currentUser.img}) no-repeat center`, "backgroundSize": "cover" }} alt="defaultAvatar"></div>
-                        }    
-                  
-                  <input id="upload" type="file" style={{"display": "none"}} onChange={e => setImg(e.target.files[0])}></input>
-                    <div id="btns-upload">
-                        <input id="btn-upload" value="browse..." type="button" onClick={() => document.getElementById('upload').click()}  name="img"></input>
-                        <button id="btn-setAvatar" onClick={sendFile}>change avatar</button>
-                    </div>
-                    </div>
+                {avatar ? 
+                    <div id="profile-avatar" style={{"background": `url(${avatar}) no-repeat center`, "backgroundSize": "cover" }} alt="avatar"></div>
+                    : 
+                    <div id="profile-avatar" style={{"background": `url(${currentUser.img}) no-repeat center`, "backgroundSize": "cover" }} alt="defaultAvatar"></div>
+                }    
+                <input id="upload" type="file" style={{"display": "none"}} onChange={e => setImg(e.target.files[0])}></input>
+                <div id="btns-upload">
+                    <input id="btn-upload" value="browse..." type="button" onClick={() => document.getElementById('upload').click()}  name="img"></input>
+                    <button id="btn-setAvatar" onClick={sendFile}>change avatar</button>
+                </div>
+            </div>
         </div>     
     )
 }
 
 export default UserForm;
+
+const refreshPage = () => {
+    window.location.reload(false)
+}

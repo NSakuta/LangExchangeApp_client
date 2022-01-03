@@ -1,13 +1,11 @@
 import '../css/MessagesBetweenAllUsers.css'
 import { useDispatch, useSelector } from "react-redux";
-import { useContext, useEffect } from "react";
+import { useEffect } from "react";
 import { messagesSelector } from "../../../store/messageReducer/messagesReducer";
 import { getAllMessagesAction } from '../../../store/messageReducer/messagesReducer';
 import { userSelector } from "../../../store/userReducer/userReducer";
-import { currentUserSelector, setCurrentUserAction } from '../../../store/authReducer/authReducer'
 import { getAllUsersAction } from "../../../store/userReducer/userReducer";
 import Message from './Message';
-import { AppContext } from '../../../App';
 import { NavLink } from 'react-router-dom';
 import { getCurrentUserIdFromLocalStorage } from '../../../store/authReducer/authReducer';
 import { findUserById } from '../../../store/userReducer/userReducer';
