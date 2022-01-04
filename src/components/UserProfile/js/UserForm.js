@@ -108,12 +108,12 @@ const UserForm = ({currentUser}) => {
                 dispatch(updateUserAction(currentUser._id, {...values, img: avatar}));
                 setTimeout(() => {
                     refreshPage()
-                }, 1000)
+                }, 500)
             } else {
                 dispatch(updateUserAction(currentUser._id, values));
                 setTimeout(() => {
                     refreshPage()
-                }, 1000)
+                }, 500)
             }
         }
     });

@@ -1,5 +1,4 @@
 .wrapper-msg {
-    _width: 80%;
     display: flex;
     margin: 0;
     justify-content: space-evenly;
@@ -70,13 +69,12 @@
     border-radius: 30px;
 }
 #box-top-msgs {
-    height: 70%;
+    height: calc(100vh / 1.5);
     width: 100%;
     overflow: auto;
     overflow-y: scroll;
 }
 #box-bottom-input {
-    height: 30%;
     width: 100%;
 }
 #box-avatar {
@@ -91,7 +89,7 @@
     margin-top: 20%;
 }
 
-/* Right sid with user's info */
+/* Right side (user's info) */
 
 #box-right {
     box-shadow: 0 4px 8px 0 rgba(146, 141, 141, 0.2), 0 6px 20px 0 rgba(180, 179, 179, 0.19);
@@ -117,7 +115,7 @@
     position: absolute;
     background: white;
     top: 50%;
-    left: 80px;
+    left: calc(100% / 2 - 100px);
     margin: 0 auto;
     width: 200px;
     height: 200px;

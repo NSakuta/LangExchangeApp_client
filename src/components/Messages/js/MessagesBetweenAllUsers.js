@@ -10,6 +10,7 @@ import { NavLink } from 'react-router-dom';
 import { getCurrentUserIdFromLocalStorage } from '../../../store/authReducer/authReducer';
 import { findUserById } from '../../../store/userReducer/userReducer';
 import { findReceivedMessagesByUserId, findSentMessagesByUserId } from '../../../store/messageReducer/messagesReducer';
+import { useNavigate } from 'react-router';
 
 const MessagesPage = () => {
 
@@ -28,6 +29,7 @@ const MessagesPage = () => {
     // const currentUserId = useSelector(currentUserSelector);
     const currentUserId = getCurrentUserIdFromLocalStorage();
     const users = useSelector(userSelector);
+    const navigate = useNavigate();
 
     let receivedMessages = findReceivedMessagesByUserId(currentUserId, messages);
     let sentMessages = findSentMessagesByUserId(currentUserId, messages);
@@ -78,10 +80,16 @@ const MessagesPage = () => {
 
     return (
         <div>
-            <div className="wrapper-allUsers">
-                <div className="allUsers">
-                    {messages.length === 0 ? <div></div> : users.length === 0 ? <div></div> : 
-                    <div>
+            <div className="container-messages">
+                <div className="allUsers-messages">
+                    {messages.length === 0 ? <div></div> 
+                    : users.length === 0 ? <div></div> 
+                    : uniqueUsers.length === 0 ? 
+                        <div className="info-box">
+                            <p>Your have no messages yet</p>
+                            <button id="btn-find" onClick={() => navigate('/users')}>Find someone</button>
+                        </div> 
+                    : <div>
                         {uniqueUsers.map(el => {
                                 return (
                                     <NavLink id="box-msg" key={el._id} to={`/user/${currentUserId}/me/messages/${el._id}`}>

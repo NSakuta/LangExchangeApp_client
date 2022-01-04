@@ -15,7 +15,6 @@ import UsersListFilterByTwoLanguages from './components/UsersList/js/UsersListFi
 import UsersListFilterByNativeLanguage from './components/UsersList/js/UsersListFilterByNativeLanguage';
 import UsersListFilterByPracticeLanguage from './components/UsersList/js/UsersListFilterByPracticeLanguage';
 import { loaderSelector } from './store/appreducer/appReducer';
-import Loader from './components/Loader/Loader';
 
 function App() {
 

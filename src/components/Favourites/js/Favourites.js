@@ -12,10 +12,8 @@ const Favourites = () => {
     const users = useSelector(userSelector);
 
     useEffect(() => {
-        if(!users) {
             dispatch(getAllUsersAction())
-        }
-    }, [dispatch, users])
+    }, [dispatch])
 
     return (
         <div>
