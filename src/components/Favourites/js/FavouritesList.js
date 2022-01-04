@@ -3,16 +3,18 @@ import { NavLink } from "react-router-dom";
 import { getCurrentUserIdFromLocalStorage } from "../../../store/authReducer/authReducer";
 import { findUserById } from "../../../store/userReducer/userReducer";
 import { useNavigate } from "react-router";
-import { useEffect } from "react";
 
 const FavouritesList = ({users}) => {
+
     
     const currentUserId = getCurrentUserIdFromLocalStorage();
+    console.log('currentuserId: ', currentUserId)
     const currentUser = findUserById(users, currentUserId);
     const navigate = useNavigate();
     const favouritesIds = currentUser.favourites;
 
-    console.log('currentUser: ', currentUser)
+    console.log('favouritesid: ', favouritesIds)
+
 
     function findUsersById() {
         let favourites = [];
@@ -25,12 +27,17 @@ const FavouritesList = ({users}) => {
     
     const favourites = findUsersById();
 
+    console.log('currentUser: ', currentUser)
+    console.log('favourites: ', favourites)
+
+
+
     return (
         <div>
             {currentUser.favourites.length === 0 ? 
                 <div className="info-box">
                         <p>Your have no favourites yet</p>
-                    <button onClick={() => navigate('/users')}>Find someone</button>
+                        <button id="btn-find" onClick={() => navigate('/users')}>Find someone</button>
                 </div> 
                 :
                 <div id="wrapper-favourites"> 
@@ -44,7 +51,7 @@ const FavouritesList = ({users}) => {
                     )      
                 })}
                 </div>
-                }
+                } 
                 
 
             </div>

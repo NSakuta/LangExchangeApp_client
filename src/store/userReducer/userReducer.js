@@ -65,7 +65,7 @@ export const addNewUserAction = (newUser) => {
     }
 }
 
-export const addFavouritesAction = (id, newValue) => {
+export const changeFavouritesAction = (id, newValue) => {
     return async dispatch => {
         dispatch(setError({error: null}))
         dispatch(startLoading());

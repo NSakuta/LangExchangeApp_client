@@ -11,6 +11,7 @@
 .allUsers-messages {
     height: fit-content;
     padding: 20px;
+    grid-column: 1 / span 2
 }
 #box-msg {
     height: 150px;

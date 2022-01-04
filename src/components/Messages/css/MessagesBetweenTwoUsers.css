@@ -115,7 +115,7 @@
     position: absolute;
     background: white;
     top: 50%;
-    left: 80px;
+    left: calc(100% / 2 - 100px);
     margin: 0 auto;
     width: 200px;
     height: 200px;

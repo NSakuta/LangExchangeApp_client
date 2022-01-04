@@ -6,7 +6,7 @@ const UserHomePage = () => {
         <div className="box-welcome">
             <img id="img-welcome" src={img} alt="welcome-img">
             </img>
-            <p>Welcome to your home page</p>
+            <p>Welcome to your profile</p>
         </div>
     )
 }

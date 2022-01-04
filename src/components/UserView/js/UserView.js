@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
-import { addFavouritesAction, findUserById, getAllUsersAction } from '../../../store/userReducer/userReducer';
+import { changeFavouritesAction, findUserById, getAllUsersAction } from '../../../store/userReducer/userReducer';
 import { authSuccess } from '../../../store/appreducer/appReducer';
 import { userSelector } from '../../../store/userReducer/userReducer';
 import { useEffect } from 'react';
@@ -23,15 +23,17 @@ const UserView = () => {
 
     dispatch(authSuccess())
 
-    useEffect(() => {
-        dispatch(getAllUsersAction())
-    }, [dispatch])
-
     const { id } = useParams();
     const allUsers = useSelector(userSelector)
     const currentUserId = getCurrentUserIdFromLocalStorage();
     const currentUser = findUserById(allUsers, currentUserId);
     const user = findUserById(allUsers, id);
+
+    useEffect(() => {
+        if(!allUsers) {
+            dispatch(getAllUsersAction())
+        }
+    }, [dispatch, allUsers])
 
     //////////////Form
 
@@ -72,22 +74,58 @@ const UserView = () => {
         setIsOpen(false);
     }
 
+    // function addToFavourites() {
+    //     let favourites = Object.assign([], currentUser.favourites)
+    //     let isDouble = false;
+    //     isDouble = favourites.includes(user._id)
+    //     if(!isDouble) {
+    //         favourites.push(user._id)
+    //         dispatch(addFavouritesAction(currentUserId, favourites))
+    //     } 
+    // }
+
+    function checkIsUserInFavourites() { 
+
+        let favourites = Object.assign([], currentUser.favourites);
+        let isDouble = favourites.includes(user._id)
+        return isDouble ? true : false;
+    }
+
+    //let isUserInFavourites = checkIsUserInFavourites();
+
     function addToFavourites() {
         let favourites = Object.assign([], currentUser.favourites)
         let isDouble = false;
         isDouble = favourites.includes(user._id)
         if(!isDouble) {
             favourites.push(user._id)
-            dispatch(addFavouritesAction(currentUserId, favourites))
+            dispatch(changeFavouritesAction(currentUserId, favourites))
+            //document.querySelector('#btn-add').innerHTML = "remove from favourites"
             setTimeout(() => {
                 refreshPage()
-            }, 1000)
+            }, 400)
+        } else {
+            const index = favourites.indexOf(user._id);
+            console.log('index: ', index);
+            favourites.splice(index, 1)
+            console.log('favourites: ', favourites)
+            dispatch(changeFavouritesAction(currentUserId, favourites))
+            //document.querySelector('#btn-add').innerHTML = "add to favourites"
+            setTimeout(() => {
+                refreshPage()
+            }, 400)
+
         }
     }
 
+
+    
+
     return (
         <>
-            {allUsers.length === 0 ? <Loader></Loader> : <div id="wrapper-userView">
+            {allUsers.length === 0 ? <Loader></Loader> 
+            : 
+            <div id="wrapper-userView">
                 <div className="box" id="box-left">
                     <div id="box-left-top"></div>
                     <div id="box-left-img" style={{ "background": `url(${user.img}) no-repeat center`, "backgroundSize": "cover" }}></div>
@@ -98,10 +136,16 @@ const UserView = () => {
                             <p className="text-user" id="text-user-learn">Learn: {user.practiceLanguage}</p>
                             <p className="text-user" id="text-user-native">Native: {user.nativeLanguage}</p>
                         </div>
-                        {auth ? <div id="box-left-bottom-btns">
-                            <button className="left-bottom-btns" id="btn-add" onClick={() => addToFavourites()} 
+                        {auth ? 
+                        <div id="box-left-bottom-btns">
+                            {checkIsUserInFavourites() ? <button className="left-bottom-btns red" id="btn-add" onClick={() => addToFavourites()} 
                                 
-                            >add to favourites</button>
+                                >remove</button> 
+                                :
+                                <button className="left-bottom-btns" id="btn-add" onClick={() => addToFavourites()} 
+                                
+                            >add</button> 
+                                }
                             <button onClick={openModal} className="left-bottom-btns" id="btn-contact">send message</button>
                             <Modal
                                 isOpen={modalIsOpen}
@@ -121,7 +165,7 @@ const UserView = () => {
                             <p className="text-user p-bottom">Please login or register to contact a person</p>
                             <button onClick={() => navigate('/auth/login')} className="left-bottom-btns" id="btn-contact">login</button>
                         </div>
-                        }
+                        } 
                         
                     </div>
                 </div>
