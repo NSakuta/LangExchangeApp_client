@@ -114,11 +114,11 @@
 #box-right-img {
     position: absolute;
     background: white;
-    top: 50%;
-    left: calc(100% / 2 - 100px);
+    top: 40%;
+    left: calc(100% / 2 - 125px);
     margin: 0 auto;
-    width: 200px;
-    height: 200px;
+    width: 250px;
+    height: 250px;
     border-radius: 50%;
     box-shadow: 0 4px 8px 0 rgba(146, 141, 141, 0.2), 0 6px 20px 0 rgba(180, 179, 179, 0.19);
 }
@@ -169,7 +169,7 @@
     font-size: 12px;
 }
 #textarea-msg {
-    width: 92%;
+    width: 97%;
     height: 120px;
     border-radius: 9px;
     border: 0.5px solid rgb(172, 167, 167);
@@ -191,9 +191,9 @@
     background-color: rgb(24, 92, 194);
     cursor: pointer;
 }
-#box-bottom-message {
+/* #box-bottom-message {
     text-align: center;
-}
+} */
 #box-bottom-form {
     position: relative;
 }

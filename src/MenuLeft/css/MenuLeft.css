@@ -1,13 +1,11 @@
 .container-menubar-left {
     display: grid;
-    grid-template-columns: 1fr 5fr;
+    grid-template-columns: 0.9fr 5fr;
     grid-template-rows: auto;
 }
 #menu-left {
-    /* position: absolute;
-    left: 0; */
     grid-column: 1 / span 1;
-    width: 200px;
+    width: 100%;
     height: 100vh;
     background-color: rgba(151, 151, 151, 0.068);
 }
@@ -42,7 +40,6 @@
 }
 #text-welcome {
     display: inline-block;
-    /* background-color: rgb(43, 177, 148); */
     padding: 20px;
     margin-left: 37%;
     margin-top: 100px;

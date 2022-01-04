@@ -43,7 +43,7 @@ export default function Header() {
                                     <div id="nav-top-me" style={{"background": `url(${user.img}) no-repeat center`, "backgroundSize":"cover"}}></div>
                                 </NavLink>
                             <li><NavLink className="nav-top-li" to='/users'>Find a partner</NavLink></li>
-                            <li><NavLink className="nav-top-li" to='/blog'>Blog</NavLink></li>
+                            {/* <li><NavLink className="nav-top-li" to='/blog'>Blog</NavLink></li> */}
                         </ul>
                         <div className="text-end">
                             <NavLink className="nav-top-li" to='/' onClick={() => dispatch(logoutAction())}>Logout</NavLink>
@@ -52,7 +52,7 @@ export default function Header() {
                     <>
                         <ul className="nav-top">
                             <li><NavLink className="nav-top-li" to='/users'>Find a partner</NavLink></li>
-                            <li><NavLink className="nav-top-li" to='/blog'>Blog</NavLink></li>
+                            {/* <li><NavLink className="nav-top-li" to='/blog'>Blog</NavLink></li> */}
                         </ul>
                         <div className="text-end">
                             <NavLink className="nav-top-li" to='/auth/login'>Login</NavLink>

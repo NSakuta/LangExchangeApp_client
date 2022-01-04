@@ -36,7 +36,7 @@ const FavouritesList = ({users}) => {
         <div>
             {currentUser.favourites.length === 0 ? 
                 <div className="info-box">
-                        <p>Your have no favourites yet</p>
+                        <p>No favourites yet</p>
                         <button id="btn-find" onClick={() => navigate('/users')}>Find someone</button>
                 </div> 
                 :

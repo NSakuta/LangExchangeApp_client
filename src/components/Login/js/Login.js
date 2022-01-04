@@ -33,7 +33,7 @@ const Login = () => {
         <div>
             {errByLogin && <ErrorByLogin text={errByLogin}></ErrorByLogin>}
             <div className="box-login">
-                {auth && <Navigate to={`/user/${currentUserId}/me`}></Navigate>}
+                {auth && <Navigate to={`/user/${currentUserId}/me/homepage`}></Navigate>}
                 <form ref={form} noValidate>
                     <div className="box-header">
                         <h4 className="styled-h4">Login</h4>

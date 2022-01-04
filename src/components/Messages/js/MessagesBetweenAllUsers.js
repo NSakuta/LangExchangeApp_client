@@ -86,7 +86,7 @@ const MessagesPage = () => {
                     : users.length === 0 ? <div></div> 
                     : uniqueUsers.length === 0 ? 
                         <div className="info-box">
-                            <p>Your have no messages yet</p>
+                            <p>No messages yet</p>
                             <button id="btn-find" onClick={() => navigate('/users')}>Find someone</button>
                         </div> 
                     : <div>

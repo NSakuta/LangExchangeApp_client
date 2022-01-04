@@ -59,6 +59,10 @@
 .container-messages-right{
   grid-column: 2 / span 2;
 }
+.inactive {
+  color: rgb(19, 19, 19);
+  text-decoration: none;
+}
 
 
 

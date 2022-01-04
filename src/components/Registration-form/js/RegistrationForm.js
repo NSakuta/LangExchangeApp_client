@@ -176,7 +176,7 @@ const RegistrationForm = () => {
             <Input
               id="password"
               type="password"
-              label="password"
+              label="Password"
               name="password"
               error={errors.password}
             />
