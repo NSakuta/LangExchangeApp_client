@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/static/css/main.ffbce63e.chunk.css",
+    "main.css": "/static/css/main.4c5f9382.chunk.css",
     "main.js": "/static/js/main.89078737.chunk.js",
     "main.js.map": "/static/js/main.89078737.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.c2e8e232.js",
@@ -8,7 +8,7 @@
     "static/js/2.512af964.chunk.js": "/static/js/2.512af964.chunk.js",
     "static/js/2.512af964.chunk.js.map": "/static/js/2.512af964.chunk.js.map",
     "index.html": "/index.html",
-    "static/css/main.ffbce63e.chunk.css.map": "/static/css/main.ffbce63e.chunk.css.map",
+    "static/css/main.4c5f9382.chunk.css.map": "/static/css/main.4c5f9382.chunk.css.map",
     "static/js/2.512af964.chunk.js.LICENSE.txt": "/static/js/2.512af964.chunk.js.LICENSE.txt",
     "static/media/26451688.8a4c9451.jpg": "/static/media/26451688.8a4c9451.jpg",
     "static/media/copy_of_web_program_service_banner_template_14.bca1311d.png": "/static/media/copy_of_web_program_service_banner_template_14.bca1311d.png",
@@ -19,7 +19,7 @@
   "entrypoints": [
     "static/js/runtime-main.c2e8e232.js",
     "static/js/2.512af964.chunk.js",
-    "static/css/main.ffbce63e.chunk.css",
+    "static/css/main.4c5f9382.chunk.css",
     "static/js/main.89078737.chunk.js"
   ]
 }

@@ -10,7 +10,7 @@
 }
 #home-text {
     position: absolute;
-    left: 27%;
+    left: calc((100% / 2) / 2);
     top: 110px;
     background-color: rgba(43, 177, 148, 0.486);
     padding: 30px;
@@ -18,7 +18,7 @@
 }
 #home-text-h1 {
     color: rgb(35, 63, 122);
-    font-size: 80px;
+    font-size: 7vw;
     font-family: 'Dancing Script', cursive;
     margin: 0 auto;
 }
