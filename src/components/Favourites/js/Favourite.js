@@ -13,7 +13,6 @@ const Favourite = ({user}) => {
                     <p className="user-fav-card-text">Practice: </p><p className="user-fav-card-text">{user.practiceLanguage}</p>
                     <br/>
                     <br/>
-                    {/* <p className="user-fav-card-text">{user.about}</p> */}
                 </div>
             </div>
         </div>

@@ -3,33 +3,29 @@ import { sendFile } from '../../api/upload.api';
 
 
 const initialState = {
-    avatar: null,
-    images: null
+    avatar: null
 };
 
-const imgReducer = createSlice({
-    name: 'img',
+const avatarReducer = createSlice({
+    name: 'avatar',
     initialState, 
     reducers: {
         setAvatar: (state, {payload}) => {
             state.avatar = payload.avatar
-        },
-        addImg: (state, {payload}) => {
-            state.images.push(payload)
         }
     }
 })
 
-export default imgReducer.reducer;
-export const {setAvatar, addImg, setError} = imgReducer.actions;
-export const imagesSelector = state => state.img.images;
+export default avatarReducer.reducer;
+export const {setAvatar} = avatarReducer.actions;
+export const avatarSelector = state => state.avatar.avatar;
 
-export const uploadFile = (img) => {
+export const uploadPhoto = (newImg) => {
     return async dispatch => {
+        
         try {
-            const response = await sendFile(img);
-            console.log('RESPONSE:', response)
-            dispatch(addImg({...response}))
+            const response = await sendFile(newImg);
+            dispatch(setAvatar({avatar: response}))
         } catch(err) {
             console.log(err.message)
         }

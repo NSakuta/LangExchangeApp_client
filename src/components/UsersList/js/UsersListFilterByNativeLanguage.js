@@ -38,7 +38,7 @@ const UsersListFilterByNativeLanguage = () => {
                     {usersAfterFilter.map(el => {
                         if(currentUserId !== el._id) {
                             return (
-                                <NavLink id="box" key={el._id} to={`/users/${el._id}`}>
+                                <NavLink className="inactive" id="box" key={el._id} to={`/users/${el._id}`}>
                                     <User key={el._id}
                                         user={el}>                               
                                     </User>

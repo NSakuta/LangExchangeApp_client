@@ -47,7 +47,7 @@ const UserView = () => {
         }
     })  
 
-    /////////////////////////////////////Modal 
+    ///////////////Modal 
 
     const customStyles = {
         content: {
@@ -74,15 +74,7 @@ const UserView = () => {
         setIsOpen(false);
     }
 
-    // function addToFavourites() {
-    //     let favourites = Object.assign([], currentUser.favourites)
-    //     let isDouble = false;
-    //     isDouble = favourites.includes(user._id)
-    //     if(!isDouble) {
-    //         favourites.push(user._id)
-    //         dispatch(addFavouritesAction(currentUserId, favourites))
-    //     } 
-    // }
+    /////////////////Add or remove favourites
 
     function checkIsUserInFavourites() { 
 
@@ -91,35 +83,26 @@ const UserView = () => {
         return isDouble ? true : false;
     }
 
-    //let isUserInFavourites = checkIsUserInFavourites();
-
-    function addToFavourites() {
+    function addOrRemoveFavourites() {
         let favourites = Object.assign([], currentUser.favourites)
         let isDouble = false;
         isDouble = favourites.includes(user._id)
+
         if(!isDouble) {
             favourites.push(user._id)
             dispatch(changeFavouritesAction(currentUserId, favourites))
-            //document.querySelector('#btn-add').innerHTML = "remove from favourites"
             setTimeout(() => {
                 refreshPage()
             }, 400)
         } else {
             const index = favourites.indexOf(user._id);
-            console.log('index: ', index);
             favourites.splice(index, 1)
-            console.log('favourites: ', favourites)
             dispatch(changeFavouritesAction(currentUserId, favourites))
-            //document.querySelector('#btn-add').innerHTML = "add to favourites"
             setTimeout(() => {
                 refreshPage()
             }, 400)
-
         }
     }
-
-
-    
 
     return (
         <>
@@ -136,39 +119,50 @@ const UserView = () => {
                             <p className="text-user" id="text-user-learn">Learn: {user.practiceLanguage}</p>
                             <p className="text-user" id="text-user-native">Native: {user.nativeLanguage}</p>
                         </div>
+
                         {auth ? 
-                        <div id="box-left-bottom-btns">
-                            {checkIsUserInFavourites() ? <button className="left-bottom-btns red" id="btn-add" onClick={() => addToFavourites()} 
-                                
-                                >remove contact</button> 
+                            <div id="box-left-bottom-btns">
+
+                                {checkIsUserInFavourites() ? 
+                                    <button className="left-bottom-btns red" 
+                                            id="btn-add" 
+                                            onClick={() => addOrRemoveFavourites()}>remove contact
+                                    </button> 
                                 :
-                                <button className="left-bottom-btns" id="btn-add" onClick={() => addToFavourites()} 
-                                
-                            >save contact</button> 
+                                    <button className="left-bottom-btns" 
+                                            id="btn-add" 
+                                            onClick={() => addOrRemoveFavourites()}>save contact
+                                    </button> 
                                 }
-                            <button onClick={openModal} className="left-bottom-btns" id="btn-contact">send message</button>
-                            <Modal
-                                isOpen={modalIsOpen}
-                                onRequestClose={closeModal}
-                                style={customStyles}
-                                contentLabel="Example Modal">
-                                <button id="modal-btn-close" onClick={closeModal}>X</button>
-                                <div id="modal-title">Write your message:</div>
-                                <form ref={form} noValidate>
-                                    <textarea id="modal-text" name="text"/>
-                                    <input id="modal-btn-submit" type="submit"></input>
-                                </form>
-                            </Modal>
-                        </div>
+
+                                <button onClick={openModal} className="left-bottom-btns" id="btn-contact">send message</button>
+                                <Modal
+                                    isOpen={modalIsOpen}
+                                    onRequestClose={closeModal}
+                                    style={customStyles}
+                                    contentLabel="Example Modal">
+                                    <button id="modal-btn-close" onClick={closeModal}>X</button>
+                                    <div id="modal-title">Write your message:</div>
+                                    <form ref={form} noValidate>
+                                        <textarea id="modal-text" name="text"/>
+                                        <input id="modal-btn-submit" type="submit"></input>
+                                    </form>
+                                </Modal>
+                            </div>
+
                         : 
-                        <div id="box-left-bottom-btns">
-                            <p className="text-user p-bottom">Please login or register to contact a person</p>
-                            <button onClick={() => navigate('/auth/login')} className="left-bottom-btns" id="btn-contact">login</button>
-                        </div>
-                        } 
-                        
+
+                            <div id="box-left-bottom-btns">
+                                <p className="text-user p-bottom">Please sign in into your account to contact users</p>
+                                <button onClick={() => navigate('/auth/login')} 
+                                        className="left-bottom-btns" 
+                                        id="btn-contact">login
+                                </button>
+                            </div>
+                        }      
                     </div>
                 </div>
+
                 <div className="box" id="box-right">
                     <div id="box-right-content">
                         <div>

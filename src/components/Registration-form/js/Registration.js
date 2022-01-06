@@ -1,52 +1,54 @@
+import '../css/RegistrationForm.css';
+import Error from './Error';
+import React from 'react';
+import { errorUserSelector } from '../../../store/userReducer/userReducer';
+import PhotoUpload from './PhotoUpload';
+import client from '../../../api/api';
 import * as Yup from 'yup';
 import { set, useForm } from 'react-cool-form';
 import Input from './Input';
 import Select from './Select';
 import RadioButtons from './RadioButtons';
 import Textarea from './Textarea';
-import { addNewUserAction, errorUserSelector } from '../../../store/userReducer/userReducer';
-import { useDispatch } from 'react-redux';
-import '../css/RegistrationForm.css';
-import { useSelector } from 'react-redux';
-import Error from './Error';
-import React from 'react';
-import client from '../../../api/api';
-import defaultAvatar from '../../../img-svg/default-image.jpg';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { addNewUserAction } from '../../../store/userReducer/userReducer';
+import defaultAvatar from '../../../img-svg/default-image.jpg';
+
 
 
 const RegistrationForm = () => {
 
-  const [img, setImg] = React.useState(null);
+
+  const [img, setImg] = React.useState('https://langexchangeappimages.s3.eu-central-1.amazonaws.com/default-image.jpg');
   const [avatar, setAvatar] = React.useState(null);
+  const errByAddUser = useSelector(errorUserSelector);
   const navigate = useNavigate()
   const dispatch = useDispatch();
+  
 
-  const sendFile = React.useCallback(async () => {
+  ///Photo upload 
+
+  const sendPhoto = React.useCallback(async () => {
     try {
-      const data = new FormData()
-      data.append('image', img);
-      console.log('data: ', img)
+        const data = new FormData()
+        data.append('image', img);
 
-      await client.post('/upload', data, {
-        headers: {
-          'content-type': 'multipart/form-data'
-        }
-      })
+        await client.post('/upload', data, {
+          headers: {
+            'content-type': 'multipart/form-data'
+          }
+        })
         .then(res => {
-          console.log('res', res)
+          console.log('res: ', res)
           return setAvatar(res.data.location)
         })
-
     } catch (err) {
-      console.log(err.message)
+        console.log(err)
     }
   }, [img]);
 
-  ///////////////////////
-
-  const errByAddUser = useSelector(errorUserSelector);
-  console.log('errByAddUser: ', errByAddUser)
+  ////////////yup validation
 
   const validateWithYup = (schema) => async (values) => {
     let errors = {};
@@ -55,9 +57,27 @@ const RegistrationForm = () => {
     } catch (yupError) {
       yupError.inner.forEach(({ path, message }) => set(errors, path, message));
     }
-
     return errors;
   };
+
+  const validationSchema = Yup.object({
+    firstName: Yup.string().required().min(2),
+    lastName: Yup.string().required().min(2),
+    gender: Yup.string().required(),
+    email: Yup.string().required(),
+    password: Yup.string().required(),
+    age: Yup.number(),
+    zip: Yup.string().required(),
+    passwordConfirm: Yup.string().oneOf([Yup.ref('password'), null], 'Passwords must match'),
+    img: Yup.string(),
+    about: Yup.string(),
+    description: Yup.string(),
+    interests: Yup.string(),
+    nativeLanguage: Yup.string().required("Required"),
+    practiceLanguage: Yup.string().required("Required")
+  })
+
+  ///////////////React-cool-form
 
   const languages = [
     { key: "choose language", value: null },
@@ -92,29 +112,18 @@ const RegistrationForm = () => {
     { key: 'Female', value: 'f' }
   ]
 
-  const validationSchema = Yup.object({
-    firstName: Yup.string().required().min(2),
-    lastName: Yup.string().required().min(2),
-    gender: Yup.string().required(),
-    email: Yup.string().required(),
-    password: Yup.string().required(),
-    age: Yup.number(),
-    zip: Yup.string().required(),
-    passwordConfirm: Yup.string().oneOf([Yup.ref('password'), null], 'Passwords must match'),
-    img: Yup.string(),
-    about: Yup.string(),
-    description: Yup.string(),
-    interests: Yup.string(),
-    nativeLanguage: Yup.string().required("Required"),
-    practiceLanguage: Yup.string().required("Required")
-  })
-
   const { form, use } = useForm({
     defaultValues: initialValues,
     validate: validateWithYup(validationSchema),
     onSubmit: (values, { reset }) => {
-      console.log("onSubmit: ", values)
-      dispatch(addNewUserAction({ ...values, img: avatar }));
+      if(avatar === null) {
+        dispatch(addNewUserAction({ ...values, img: img }));
+        console.log('values', values)
+      } else {
+        dispatch(addNewUserAction({ ...values, img: avatar }));
+        console.log('values', values)
+
+      }
       reset()
       navigate('/auth/login')
     }
@@ -126,22 +135,18 @@ const RegistrationForm = () => {
   return (
     <div className="wrapper">
       <div id="wrapper-reg">
+
         <div id="box-reg-left">
-          <div>
-            {avatar ?
-              <div id="avatar" style={{ "background": `url(${avatar}) no-repeat center`, "backgroundSize": "cover" }} alt="avatar"></div>
-              :
-              <div id="avatar" style={{ "background": `url(${defaultAvatar}) no-repeat center`, "backgroundSize": "100%" }} alt="defaultAvatar"></div>
-            }
-            <input id="upload" type="file" style={{"display": "none"}} onChange={e => setImg(e.target.files[0])}></input>
-            <div id="btns-upload">
-              <input id="btn-upload" value="browse..." type="button" onClick={() => document.getElementById('upload').click()}  name="img"></input>
-              <button id="btn-setAvatar" onClick={sendFile}>set avatar</button>
-            </div>
-          </div>
+          <PhotoUpload img={defaultAvatar}
+                        avatar={avatar}
+                        onChange={e => setImg(e.target.files[0])}
+                        onClick={sendPhoto}
+                        bgSize={"100%"}>
+          </PhotoUpload>
         </div>
+
         <div className="box-reg-right">
-        {errByAddUser ? <Error text={errByAddUser}></Error> : <div></div>}
+          {errByAddUser && <Error text={errByAddUser}></Error>}
           <h4 id="title-reg">Registration form</h4>
           <form className="form-registration" ref={form} method="POST" enctype="multipart/form-data">
             <RadioButtons

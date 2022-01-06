@@ -7,35 +7,13 @@
     height: 250px;
     width: 200px;
     margin: 0;
-    _box-shadow: 0 4px 8px 0 rgba(184, 182, 182, 0.2), 0 3px 3px 0 rgba(202, 201, 201, 0.19);
     height: fit-content;
     margin: 10px;
     border-radius: 10px;
     text-decoration: none;
-}
-.info-box {
-    margin: 250px auto;
-    width: 200px;
-    background-color: rgba(35, 63, 122, 0);
-    border-radius: 15px;
-    padding: 15px;
-    text-align: center;
-}
-#btn-find {
-    margin: 25px 0 10px 0;
-    width: 180px;
-    height: 40px;
-    background-color: rgb(43, 177, 148);
-    border: none;
-    border-radius: 15px;
-    color: white;
-    transition: background-color 0.5s;   
 }
 #btn-find:hover {
     cursor: pointer;
     background-color: rgb(22, 90, 75);
 }
 
-.info-box p {
-    margin: 0;
-}

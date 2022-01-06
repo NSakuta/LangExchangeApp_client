@@ -23,41 +23,54 @@ export default function Header() {
     const users = useSelector(userSelector);
     const user = findUserById(users, currentUserId)
 
-    console.log('auth: ', auth)
-
     return (
         <div id="wrapper-header">
             <div className="header">
                 <NavLink to={`/`}>
-                <div id="logo">
-                    <div id="logo-circle-1">
+                    <div id="logo">
+                        <div id="logo-circle-1"></div>
+                        <div id="logo-circle-2"></div>
                     </div>
-                    <div id="logo-circle-2">
-                    </div>
-                </div>
                 </NavLink>
-                {users.length === 0 ? <div></div> : auth ? 
-                    <>
-                        <ul className="nav-top">
-                                <NavLink className="nav-top-li" to={`/user/${currentUserId}/me/homepage`}>
-                                    <div id="nav-top-me" style={{"background": `url(${user.img}) no-repeat center`, "backgroundSize":"cover"}}></div>
+                {users.length === 0 ? 
+                    <div></div> 
+                    : auth ? 
+                        <>
+                            <ul className="nav-top">
+                                    <NavLink className="nav-top-li" 
+                                            to={`/user/${currentUserId}/me/homepage`}>
+                                        <div id="nav-top-me" 
+                                            style={{"background": `url(${user.img}) no-repeat center`, "backgroundSize":"cover"}}>     
+                                        </div>
+                                    </NavLink>
+                                <li>
+                                    <NavLink className="nav-top-li" 
+                                            to='/users'>Find a partner
+                                    </NavLink>
+                                </li>
+                            </ul>
+                            <div className="text-end">
+                                <NavLink className="nav-top-li" 
+                                        to='/' 
+                                        onClick={() => dispatch(logoutAction())}>Logout
                                 </NavLink>
-                            <li><NavLink className="nav-top-li" to='/users'>Find a partner</NavLink></li>
-                            {/* <li><NavLink className="nav-top-li" to='/blog'>Blog</NavLink></li> */}
-                        </ul>
-                        <div className="text-end">
-                            <NavLink className="nav-top-li" to='/' onClick={() => dispatch(logoutAction())}>Logout</NavLink>
-                        </div></>
+                            </div>
+                        </>
                     :
-                    <>
-                        <ul className="nav-top">
-                            <li><NavLink className="nav-top-li" to='/users'>Find a partner</NavLink></li>
-                            {/* <li><NavLink className="nav-top-li" to='/blog'>Blog</NavLink></li> */}
-                        </ul>
-                        <div className="text-end">
-                            <NavLink className="nav-top-li" to='/auth/login'>Login</NavLink>
-                        </div>
-                    </> 
+                        <>
+                            <ul className="nav-top">
+                                <li>
+                                    <NavLink className="nav-top-li" 
+                                            to='/users'>Find a partner
+                                    </NavLink>
+                                </li>
+                            </ul>
+                            <div className="text-end">
+                                <NavLink className="nav-top-li" 
+                                        to='/auth/login'>Login
+                                </NavLink>
+                            </div>
+                        </> 
                 }
             </div>
         </div>

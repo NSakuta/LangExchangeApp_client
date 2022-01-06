@@ -8,12 +8,9 @@ const FavouritesList = ({users}) => {
 
     
     const currentUserId = getCurrentUserIdFromLocalStorage();
-    console.log('currentuserId: ', currentUserId)
     const currentUser = findUserById(users, currentUserId);
     const navigate = useNavigate();
     const favouritesIds = currentUser.favourites;
-
-    console.log('favouritesid: ', favouritesIds)
 
 
     function findUsersById() {
@@ -27,41 +24,30 @@ const FavouritesList = ({users}) => {
     
     const favourites = findUsersById();
 
-    console.log('currentUser: ', currentUser)
-    console.log('favourites: ', favourites)
-
-
 
     return (
         <div>
             {currentUser.favourites.length === 0 ? 
                 <div className="info-box">
-                        <p>No favourites yet</p>
-                        <button id="btn-find" onClick={() => navigate('/users')}>Find someone</button>
+                    <p>No favourites yet</p>
+                    <button className="btn-find" onClick={() => navigate('/users')}>Find someone</button>
                 </div> 
                 :
                 <div id="wrapper-favourites"> 
-                {favourites.map(el => {
-                    return (
-                        <NavLink className="inactive" id="box-fav" key={el._id} to={`/users/${el._id}`}>
-                            <Favourite key={el._id}
-                                user={el}>
-                            </Favourite>
-                        </NavLink>
-                    )      
-                })}
+                    {favourites.map(el => {
+                        return (
+                            <NavLink className="inactive" id="box-fav" key={el._id} to={`/users/${el._id}`}>
+                                <Favourite key={el._id}
+                                    user={el}>
+                                </Favourite>
+                            </NavLink>
+                            )      
+                        })
+                    }
                 </div>
-                } 
-                
-
-            </div>
+            } 
+        </div>
     )
 }
 
 export default FavouritesList;
-
-
-
-const refreshPage = () => {
-    window.location.reload(false)
-}

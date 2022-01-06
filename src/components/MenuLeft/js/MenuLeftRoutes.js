@@ -1,14 +1,14 @@
 import { Route, Routes } from 'react-router-dom';
-import UserProfile from '../components/UserProfile/js/UserProfile';
+import UserProfile from '../../UserProfile/js/UserProfile';
 import MenuLeft from './MenuLeft';
-import MessagesBetweenTwoUsers from '../components/Messages/js/MessagesBetweenTwoUsers'
-import MessagesBetweenAllUsers from '../components/Messages/js/MessagesBetweenAllUsers'
-import Favourites from '../components/Favourites/js/Favourites';
-import './css/MenuLeft.css'
-import { userSelector } from '../store/userReducer/userReducer';
+import MessagesBetweenTwoUsers from '../../Messages/js/MessagesBetweenTwoUsers'
+import MessagesBetweenAllUsers from '../../Messages/js/MessagesBetweenAllUsers'
+import Favourites from '../../Favourites/js/Favourites';
+import '../css/MenuLeft.css'
+import { userSelector } from '../../../store/userReducer/userReducer';
 import { useSelector } from 'react-redux';
-import Loader from '../components/Loader/Loader';
-import UserHomePage from '../components/UserHomePage/UserHomePage';
+import Loader from '../../Loader/Loader';
+import UserHomePage from '../../UserHomePage/UserHomePage';
 
 const MenuLeftRoutes = () => {
 

@@ -7,22 +7,21 @@ import Select from '../../Registration-form/js/Select';
 import RadioButtons from '../../Registration-form/js/RadioButtons';
 import Textarea from '../../Registration-form/js/Textarea';
 import client from '../../../api/api';
-import { useDispatch, useSelector } from 'react-redux';
-import { isUpdatedSelector, updateUserAction } from '../../../store/userReducer/userReducer';
+import { useDispatch } from 'react-redux';
+import { updateUserAction } from '../../../store/userReducer/userReducer';
+import PhotoUpload from '../../Registration-form/js/PhotoUpload';
 
 const UserForm = ({currentUser}) => {
 
     const dispatch = useDispatch();
-    const isUpdated = useSelector(isUpdatedSelector)
 
-    const [img, setImg] = React.useState(null);
+    const [img, setImg] = React.useState(currentUser.img);
     const [avatar, setAvatar] = React.useState(null);
 
     const sendFile = React.useCallback(async () => {
         try {
             const data = new FormData()
             data.append('image', img);
-            console.log('data: ', img)
 
             await client.post('/upload', data, {
                 headers: {
@@ -38,8 +37,9 @@ const UserForm = ({currentUser}) => {
             console.log(err.message)
         }
     }, [img]);
+    
 
-    ///////////////////////
+    ///////////Yup validation
 
     const validateWithYup = (schema) => async (values) => {
         let errors = {};
@@ -102,8 +102,6 @@ const UserForm = ({currentUser}) => {
         defaultValues: initialValues,
         validate: validateWithYup(validationSchema),
         onSubmit: (values) => {
-            console.log("onSubmit: ", values)
-            console.log('isUpdated: ', isUpdated)
             if(img) {
                 dispatch(updateUserAction(currentUser._id, {...values, img: avatar}));
                 setTimeout(() => {
@@ -118,7 +116,7 @@ const UserForm = ({currentUser}) => {
         }
     });
 
-    const errors = use("errors", { errorWithTouched: true }); // Default is "false"
+    const errors = use("errors", { errorWithTouched: true }); 
 
 
     return (
@@ -148,7 +146,6 @@ const UserForm = ({currentUser}) => {
                             name="lastName"
                             error={errors.lastName}
                         />
-
                         <Input
                             id="email"
                             type="email"
@@ -156,7 +153,6 @@ const UserForm = ({currentUser}) => {
                             name="email"
                             className="two-columns"
                             error={errors.email}
-
                         />
                         <Input
                             id="age"
@@ -164,7 +160,6 @@ const UserForm = ({currentUser}) => {
                             label="Age"
                             name="age"
                             error={errors.age}
-
                         />
                         <Input
                             id="zip"
@@ -177,7 +172,6 @@ const UserForm = ({currentUser}) => {
                             name="nativeLanguage"
                             options={languages}
                             error={errors.nativeLanguage}
-
                         />
                         <Select
                             label="Language you want to practice"
@@ -185,7 +179,6 @@ const UserForm = ({currentUser}) => {
                             options={languages}
                             error={errors.practiceLanguage}
                         />
-
                         <Input
                             id="about"
                             type="text"
@@ -199,7 +192,6 @@ const UserForm = ({currentUser}) => {
                             name="interests"
                             error={errors.interests}
                             className="two-columns"
-
                         />
                         <Textarea
                             label="About yourself"
@@ -208,21 +200,17 @@ const UserForm = ({currentUser}) => {
                             error={errors.description}
                             className="two-columns"
                         />
-                        <input className="btn-submit" type="submit"></input>
+                        <input className="btn-submit" type="submit" value="Save"></input>
                     </form>
                 </div>
             </div>
             <div id="box-profile-avatar">
-                {avatar ? 
-                    <div id="profile-avatar" style={{"background": `url(${avatar}) no-repeat center`, "backgroundSize": "cover" }} alt="avatar"></div>
-                    : 
-                    <div id="profile-avatar" style={{"background": `url(${currentUser.img}) no-repeat center`, "backgroundSize": "cover" }} alt="defaultAvatar"></div>
-                }    
-                <input id="upload" type="file" style={{"display": "none"}} onChange={e => setImg(e.target.files[0])}></input>
-                <div id="btns-upload">
-                    <input id="btn-upload" value="browse..." type="button" onClick={() => document.getElementById('upload').click()}  name="img"></input>
-                    <button id="btn-setAvatar" onClick={sendFile}>change avatar</button>
-                </div>
+                <PhotoUpload avatar={avatar}
+                                img={img}
+                                onClick={sendFile}
+                                onChange={e => setImg(e.target.files[0])}
+                                bgSize={"cover"}>
+                </PhotoUpload>
             </div>
         </div>     
     )
