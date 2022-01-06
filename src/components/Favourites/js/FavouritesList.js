@@ -43,7 +43,7 @@ const FavouritesList = ({users}) => {
                 <div id="wrapper-favourites"> 
                 {favourites.map(el => {
                     return (
-                        <NavLink id="box-fav" key={el._id} to={`/users/${el._id}`}>
+                        <NavLink className="inactive" id="box-fav" key={el._id} to={`/users/${el._id}`}>
                             <Favourite key={el._id}
                                 user={el}>
                             </Favourite>

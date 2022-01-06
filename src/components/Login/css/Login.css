@@ -10,7 +10,7 @@
 .box-login {
     width: 420px;
     margin: 0 auto;
-    margin-top: 90px;
+    margin-top: 70px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     border-radius: 9px;
 }
@@ -60,7 +60,7 @@
 }
 .box-btns {
     width: 80%;
-    margin: 40px auto;
+    margin: 25px auto;
 }
 .styled-inp {
     border-radius: 9px;
@@ -87,4 +87,22 @@
     color: gray;
     margin: 0;
 }
+#box-info-demo {
+    margin: 20px auto;
+    background-color: rgba(43, 177, 148, 0.048);
+    padding: 20px;
+    border: 1px solid rgb(28, 114, 97);
+    width: 35%;
+    height: fit-content;
+    border-radius:5px;
+    text-align:center;
+}
+
+#text-info-demo {
+    color:rgb(28, 114, 97);
+    font-size:14px;
+    margin: 0;
+    padding: 0;
+}
+
 

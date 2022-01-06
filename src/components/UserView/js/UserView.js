@@ -140,11 +140,11 @@ const UserView = () => {
                         <div id="box-left-bottom-btns">
                             {checkIsUserInFavourites() ? <button className="left-bottom-btns red" id="btn-add" onClick={() => addToFavourites()} 
                                 
-                                >remove</button> 
+                                >remove contact</button> 
                                 :
                                 <button className="left-bottom-btns" id="btn-add" onClick={() => addToFavourites()} 
                                 
-                            >add</button> 
+                            >save contact</button> 
                                 }
                             <button onClick={openModal} className="left-bottom-btns" id="btn-contact">send message</button>
                             <Modal
